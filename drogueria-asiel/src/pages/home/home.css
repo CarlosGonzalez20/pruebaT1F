@@ -8,9 +8,14 @@
 }
 
 .medicamentos {
+    background-image: url('../../assets/Images/medicamentos.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
     top: 0%;
     width: 100%;
-    height: auto;
+    height: 75%;
 }
 
 /* Media Queries para hacer el diseño responsivo */
