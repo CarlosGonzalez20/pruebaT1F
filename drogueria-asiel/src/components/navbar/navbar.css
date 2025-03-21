@@ -135,6 +135,7 @@
         align-items: center;
         height: auto;
         padding: 15px;
+        border-radius: 0;
     }
 
     .menu {
