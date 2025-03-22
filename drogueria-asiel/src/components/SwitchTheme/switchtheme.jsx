@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./switchTheme.css";
+import "./switchtheme.css";
 
 function SwitchTheme() {
     // Detectar el tema del sistema
