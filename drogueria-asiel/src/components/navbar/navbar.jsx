@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./navbar.css";
 import logo from "../../assets/Images/Logo_ASIELSA_01-11829bbd.webp";
-import Switch from "../SwitchTheme/switchtheme";
+import SwitchTheme from "../SwitchTheme/switchtheme";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +21,7 @@ const Navbar = () => {
                 <a href="#productos"><li>PRODUCTOS</li></a>
                 <a href="#contacto"><li>CONTÁCTENOS</li></a>
                 <a href="#blog"><li>BLOG</li></a>
-                <li className="switch-no-hover"><Switch /></li>
+                <li><SwitchTheme /></li>
             </ul>
             <button className="menu-toggle" onClick={toggleMenu}>
                 <span></span>

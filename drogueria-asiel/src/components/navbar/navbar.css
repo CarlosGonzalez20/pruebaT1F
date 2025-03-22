@@ -1,5 +1,6 @@
 .navbar {
     position: fixed;
+    display: flex;
     top: 2%;
     left: 1%;
     width: 98%;
@@ -9,7 +10,6 @@
     color: var(--text-color);
     z-index: 1000;
     padding: 10px 20px;
-    display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 4px 10px var(--box-shadow-color);
@@ -36,6 +36,7 @@
     display: flex;
     list-style: none;
     justify-content: center;
+    align-items: center;
     gap: 5%;
     margin-left: 0;
     padding: 0;
@@ -46,8 +47,7 @@
     cursor: pointer;
 }
 
-/* Efecto de hover moderno */
-.menu li{
+.menu li {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -57,7 +57,7 @@
     position: relative;
 }
 
-.menu li:not(.switch-no-hover):after {
+.menu li:after {
     content: '';
     position: absolute;
     width: 0;
@@ -68,21 +68,19 @@
     transition: all 0.3s ease-in-out;
 }
 
-.menu li:not(.switch-no-hover):hover {
+.menu li:hover {
     color: var(--text-color);
     transform: scale(1.05);
 }
 
-.menu li:not(.switch-no-hover):hover::after {
+.menu li:hover::after {
     width: 100%;
     left: 0;
 }
 
-.menu li:not(.switch-no-hover):hover {
+.menu li:hover {
     text-shadow: 2px 2px 4px var(--box-shadow-color);
 }
-
-/* Menú flotante */
 
 .menu-toggle {
     display: none;
@@ -92,7 +90,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: var(--background-color);
+    background-color: gray;
     color: var(--text-color);
     box-shadow: 0 2px 5px var(--box-shadow-color);
     border: none;
@@ -111,7 +109,6 @@
     transition: all 0.3s ease;
 }
 
-/* Menú flotante */
 .menu.open {
     display: flex;
     flex-direction: column;
@@ -122,7 +119,7 @@
     color: var(--text-color);
     border-radius: 8px;
     box-shadow: 0 4px 10px var(--box-shadow-color);
-    padding: 10px;
+    padding: 10px 10px 20px 10px; 
     z-index: 1000;
 }
 
@@ -139,6 +136,7 @@
         height: auto;
         padding: 15px;
         border-radius: 0;
+        box-shadow: none;
     }
 
     .menu {
@@ -147,6 +145,15 @@
 
     .menu-toggle {
         display: flex;
+    }
+
+    .menu.open li {
+        padding: 10px 20px;
+        text-align: right;
+    }
+
+    .menu.open li:last-child {
+        margin-top: 10px;
     }
 }
 
