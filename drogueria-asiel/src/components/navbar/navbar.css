@@ -5,13 +5,14 @@
     width: 98%;
     height: 95px;
     border-radius: 75px;
-    background-color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     z-index: 1000;
     padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px var(--box-shadow-color);
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
 }
@@ -46,39 +47,39 @@
 }
 
 /* Efecto de hover moderno */
-.menu li {
+.menu li{
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    color: #0e2240;
+    color: var(--text-color);
     transition: all 0.3s ease-in-out;
     border-radius: 8px;
     position: relative;
 }
 
-.menu li::after {
+.menu li:not(.switch-no-hover):after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    background: #0e2240;
+    background: var(--text-color);
     bottom: 0;
     left: 50%;
     transition: all 0.3s ease-in-out;
 }
 
-.menu li:hover {
-    color: #0e2240;
+.menu li:not(.switch-no-hover):hover {
+    color: var(--text-color);
     transform: scale(1.05);
 }
 
-.menu li:hover::after {
+.menu li:not(.switch-no-hover):hover::after {
     width: 100%;
     left: 0;
 }
 
-.menu li:hover {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.menu li:not(.switch-no-hover):hover {
+    text-shadow: 2px 2px 4px var(--box-shadow-color);
 }
 
 /* Menú flotante */
@@ -91,8 +92,9 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    box-shadow: 0 2px 5px var(--box-shadow-color);
     border: none;
     cursor: pointer;
     flex-direction: column;
@@ -104,7 +106,7 @@
 .menu-toggle span {
     width: 24px;
     height: 6px;
-    background-color: #000;
+    background-color: var(--background-color);
     margin: 3px 0;
     transition: all 0.3s ease;
 }
@@ -116,9 +118,10 @@
     position: fixed;
     top: 70px;
     right: 20px;
-    background-color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px var(--box-shadow-color);
     padding: 10px;
     z-index: 1000;
 }
@@ -139,11 +142,11 @@
     }
 
     .menu {
-        display: none; /* Oculta el menú en móviles */
+        display: none;
     }
 
     .menu-toggle {
-        display: flex; /* Muestra el botón de menú en móviles */
+        display: flex;
     }
 }
 
