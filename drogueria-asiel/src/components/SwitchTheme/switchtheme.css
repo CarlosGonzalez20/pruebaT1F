@@ -21,7 +21,6 @@ body {
     display: inline-block;
     width: 50px;
     height: 25px;
-    margin-left: 20px;
     position: relative;
 }
 
@@ -33,7 +32,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 20px; /* Ajusta el tamaño de los SVG */
+    width: 20px;
     height: 20px;
     pointer-events: none;
     transition: opacity 0.3s;
@@ -42,12 +41,14 @@ body {
 .ligth-icon {
     left: 3px;
     opacity: 1;
+    transition: all 0.3s ease-in-out;
 }
 
 .dark-icon {
     right: 3px;
     opacity: 0;
-    color: black
+    color: black;
+    transition: all 0.3s ease-in-out;
 }
 
 .switch-button__label {

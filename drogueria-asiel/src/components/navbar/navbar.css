@@ -71,6 +71,11 @@
 .menu li:hover {
     color: var(--text-color);
     transform: scale(1.05);
+    text-shadow: 2px 2px 4px var(--box-shadow-color);
+}
+
+.menu li.switch-theme {
+    display: flex;
 }
 
 .menu li:hover::after {
@@ -78,8 +83,18 @@
     left: 0;
 }
 
-.menu li:hover {
-    text-shadow: 2px 2px 4px var(--box-shadow-color);
+.menu li.switch-theme:hover {
+    transform: none;
+    text-shadow: none;
+}
+
+.menu li.switch-theme:hover::after {
+    width: 0;
+    left: 50%;
+}
+
+.switch-theme {
+    transition: all 0.3s ease-in-out;
 }
 
 .menu-toggle {

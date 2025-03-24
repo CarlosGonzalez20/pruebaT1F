@@ -21,7 +21,7 @@ const Navbar = () => {
                 <a href="#productos"><li>PRODUCTOS</li></a>
                 <a href="#contacto"><li>CONTÁCTENOS</li></a>
                 <a href="#blog"><li>BLOG</li></a>
-                <li><SwitchTheme /></li>
+                <li className="switch-theme"><SwitchTheme /></li>
             </ul>
             <button className="menu-toggle" onClick={toggleMenu}>
                 <span></span>
