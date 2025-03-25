@@ -7,15 +7,83 @@
     overflow-x: hidden;
 }
 
-.medicamentos {
+.hero-section {
     background-image: url('../../assets/Images/medicamentos.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: scroll;
-    top: 0%;
     width: 100%;
-    height: 75%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
-/* Media Queries para hacer el diseño responsivo */
+.hero-content {
+    width: 50%;
+    background-color: rgba(240, 248, 255, 0.7);
+    backdrop-filter: blur(1%);
+    padding: 2rem;
+    margin-left: 5%;
+    border-radius: 8px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 2.8rem;
+    color: #555;
+    font-weight: normal;
+    line-height: 1.3;
+}
+
+.cards-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+  }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    .hero-subtitle {
+        font-size: 2.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        width: 90%;
+        padding: 1.5rem;
+    }
+    .hero-title {
+        font-size: 2rem;
+    }
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+}
