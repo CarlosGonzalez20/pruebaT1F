@@ -63,9 +63,12 @@
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        min-height: 50vh;
+    }
     .hero-content {
         width: 80%;
-        margin: 0 auto;
+        margin: 0 15px;
     }
     .hero-title {
         font-size: 2.5rem;

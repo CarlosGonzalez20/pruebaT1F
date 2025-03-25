@@ -2,26 +2,11 @@ import React from "react";
 import "./home.css";
 import Navbar from "../../components/navbar/navbar";
 import Card from "../../components/card/card";
+  import HistoriaIMG from "../../assets/Images/historia.webp";
+  import VisionIMG from "../../assets/Images/medicinas-vision.webp";
+  import MisionIMG from "../../assets/Images/familias-mision.webp";
 
 const Home = () => {
-  const cardsData = [
-    {
-      title: "Sobre Nosotros",
-      subtitle: "02 Marketing Farmacéutico",
-      items: ["Mi información", "Mi información", "Mi información"]
-    },
-    {
-      title: "Misión",
-      subtitle: "03 Distribución y Comercialización",
-      items: ["Mi información", "Mi información"]
-    },
-    {
-      title: "Visión",
-      subtitle: "04 Marketing Farmacéutico",
-      items: ["Mi información", "Mi información", "Mi información"]
-    },
-  ];
-
   return (
     <div className="home">
       <Navbar />
@@ -32,14 +17,24 @@ const Home = () => {
         </div>
       </div>
       <div className="cards-section">
-        {cardsData.map((card, index) => (
-          <Card
-            key={index}
-            title={card.title}
-            subtitle={card.subtitle}
-            items={card.items}
-          />
-        ))}
+        <Card 
+          title="Nuestra Historia"
+          content="ASIELSA es una empresa farmacéutica 100% guatemalteca, que nace con el objeto de contribuir y mejorar la 
+          calidad de vida de las familias centroamericanas. Con más de 20 años de experiencia en el campo de servicios médicos, 
+          contamos con productos de vanguardia, medicamentos de calidad a precios accesibles."
+          backgroundImage= {HistoriaIMG}
+        />
+        <Card
+          title="Visión"
+          content="Ser una droguería líder en el mercado centroamericano, a través de alianzas estratégicas, para brindar productos
+           de máxima calidad para el cuidado de la salud."
+          backgroundImage= {VisionIMG}
+        />
+        <Card 
+          title="Mision"
+          content="Ser reconocidos por las familias y profesionales como una empresa ética y socialmente comprometida."
+          backgroundImage= {MisionIMG}
+        />
       </div>
     </div>
   );

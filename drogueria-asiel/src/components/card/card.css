@@ -1,46 +1,57 @@
 .card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 16px;
-    overflow: hidden;
-    width: 300px; /* Ajusta según necesites */
-  }
-  
-  .card-header {
-    background-color: #f8f9fa;
-    padding: 16px;
-    border-bottom: 1px solid #e9ecef;
-  }
-  
-  .card-title {
-    margin: 0;
-    color: #333;
-    font-size: 1.25rem;
-  }
-  
-  .card-subtitle {
-    margin: 4px 0 0;
-    color: #6c757d;
-    font-size: 1rem;
-    font-weight: normal;
-  }
-  
-  .card-body {
-    padding: 16px;
-  }
-  
-  .card-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .card-item {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .card-item:last-child {
-    border-bottom: none;
-  }
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+  overflow: hidden;
+  width: 375px;
+  position: relative;
+  min-height: 200px;
+}
+
+.card-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  height: 100%;
+}
+
+.card-header {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.card-subtitle {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  font-weight: normal;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-content {
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos cuando no hay imagen de fondo */
+.card:not([style*="background-image"]) {
+  background-color: white;
+}
+
+.card:not([style*="background-image"]) .card-overlay {
+  background-color: transparent;
+}
+
+.card:not([style*="background-image"]) .card-title,
+.card:not([style*="background-image"]) .card-content {
+  color: #333;
+  text-shadow: none;
+}
