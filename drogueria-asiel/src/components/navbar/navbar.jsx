@@ -11,24 +11,30 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar">
+        <nav className="navbar" aria-label="Navegación principal">
             <a href="#inicio" className="containerLogo">
                 <img src={logo} alt="Droguería Asiel SA" className="logo"/>
             </a>
             <ul className={`menu ${isMenuOpen ? "open" : ""}`}>
-                <a href="#inicio"><li>INICIO</li></a>
-                <a href="#nosotros"><li>SOBRE NOSOTROS</li></a>
-                <a href="#productos"><li>PRODUCTOS</li></a>
-                <a href="#contacto"><li>CONTÁCTENOS</li></a>
-                <a href="#blog"><li>BLOG</li></a>
+                <li><a href="#inicio">INICIO</a></li>
+                <li><a href="#nosotros">SOBRE NOSOTROS</a></li>
+                <li><a href="#productos">PRODUCTOS</a></li>
+                <li><a href="#contacto">CONTÁCTENOS</a></li>
+                <li><a href="#blog">BLOG</a></li>
                 <li className="switch-theme"><SwitchTheme /></li>
             </ul>
-            <button className="menu-toggle" onClick={toggleMenu}>
+            <button 
+                className="menu-toggle" 
+                onClick={toggleMenu}
+                aria-label="Menú de navegación"
+                aria-expanded={isMenuOpen}
+                aria-controls="menu"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-        </div>
+        </nav>
     );
 };
 
