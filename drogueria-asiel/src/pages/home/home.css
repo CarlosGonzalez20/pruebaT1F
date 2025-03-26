@@ -64,7 +64,7 @@
 
 @media (max-width: 768px) {
     .hero-section {
-        min-height: 50vh;
+        min-height: 75vh;
     }
     .hero-content {
         width: 80%;
