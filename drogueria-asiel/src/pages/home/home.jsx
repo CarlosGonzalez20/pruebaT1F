@@ -39,6 +39,7 @@ const Home = () => {
         <div className="hero-content">
           <h1 className="hero-title">SALUD PARA SU FAMILIA</h1>
           <h2 className="hero-subtitle">MEDICAMENTOS DE CALIDAD</h2>
+          <p className="hero-description">Nuestra misión es cuidar la salud de tus familiares, brindando productos de alta calidad para el cuidado de la salud.</p>
         </div>
       </header>
       
