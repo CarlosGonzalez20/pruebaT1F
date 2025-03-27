@@ -5,6 +5,7 @@ import Card from "../../components/card/card";
 import HistoriaIMG from "../../assets/Images/historia.webp";
 import VisionIMG from "../../assets/Images/medicinas-vision.webp";
 import MisionIMG from "../../assets/Images/familias-mision.webp";
+import Footer from "../../components/footer/footer";
 
 // Datos de las cards en un array para mejor mantenibilidad
 const cardData = [
@@ -52,6 +53,7 @@ const Home = () => {
           />
         ))}
       </section>
+      <Footer />
     </div>
   );
 };

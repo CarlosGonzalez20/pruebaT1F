@@ -1,0 +1,140 @@
+.footer {
+    background-color: var(--footer-background-color);
+    color: var(--text-color);
+    padding: 30px 20px;
+    border-radius: 25px;
+    margin: 15px auto;
+    width: 94%;
+    max-width: 1200px;
+    box-shadow: 0 2px 5px var(--box-shadow-color);
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.footer-left, .footer-right {
+    flex: 1;
+    min-width: 300px;
+}
+
+.footer-left {
+    padding-left: 10px;
+}
+
+.footer-left h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.footer-left p {
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+.contact-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.contact-label {
+    font-weight: bold;
+    min-width: 80px;
+}
+
+.contact-value {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-style: normal;
+    flex: 1;
+}
+
+.contact-value a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    color: var(--primary-color, #3498db);
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid color-mix(in srgb, var(--text-color) 20%, transparent);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.copy-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    z-index: 1000;
+    animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        width: 90%;
+        padding: 20px 15px;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .contact-label {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        border-radius: 15px;
+        width: 85%;
+    }
+    
+    .footer-left, .footer-right {
+        min-width: 100%;
+    }
+    
+    .footer-left {
+        padding-left: 0;
+    }
+}
