@@ -1,29 +1,12 @@
 {
-    "routes": [
-      {
-        "src": "/.*",
-        "dest": "/index.html",
-        "status": 200
-      },
-      {
-        "src": "/not-found",
-        "dest": "/index.html",
-        "status": 200
-      },
-      {
-        "handle": "filesystem"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/not-found",
-        "status": 404
-      }
-    ],
-    "cleanUrls": true,
-    "rewrites": [
-      {
-        "source": "/(.*)",
-        "destination": "/index.html"
-      }
-    ]
-  }
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "dest": "/index.html"
+    }
+  ],
+  "cleanUrls": true
+}
