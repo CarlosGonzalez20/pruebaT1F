@@ -87,6 +87,7 @@
     height: 40px;
     background-color: #3b82f6;
     border-radius: 50%;
+    z-index: 1;
   }
   
   .atom:nth-child(1) {
@@ -110,7 +111,8 @@
   .bond {
     position: absolute;
     background-color: #bfdbfe;
-    width: 3px;
+    width: 5px;
+    z-index: 0;
   }
   
   .bond:nth-child(4) {
