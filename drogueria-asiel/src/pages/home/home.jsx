@@ -5,13 +5,14 @@ import Card from "../../components/card/card";
 import HistoriaIMG from "../../assets/Images/historia.webp";
 import VisionIMG from "../../assets/Images/medicinas-vision.webp";
 import MisionIMG from "../../assets/Images/familias-mision.webp";
+import DescripcionIMG from "../../assets/Images/description-us.webp";
 import Footer from "../../components/footer/footer";
 
 // Datos de las cards en un array para mejor mantenibilidad
 const cardData = [
   {
     title: "Nuestra Historia",
-    content: "ASIELSA es una empresa farmacéutica 100% guatemalteca, que nace con el objeto de contribuir y mejorar la calidad de vida de las familias centroamericanas. Con más de 20 años de experiencia en el campo de servicios médicos, contamos con productos de vanguardia, medicamentos de calidad a precios accesibles.",
+    content: "ASIEL S.A. es una empresa farmacéutica 100% guatemalteca, que nace con el objeto de contribuir y mejorar la calidad de vida de las familias centroamericanas. Con más de 20 años de experiencia en el campo de servicios médicos, contamos con productos de vanguardia, medicamentos de calidad a precios accesibles.",
     backgroundImage: HistoriaIMG,
     id: 1
   },
@@ -26,7 +27,13 @@ const cardData = [
     content: "Ser reconocidos por las familias y profesionales como una empresa ética y socialmente comprometida.",
     backgroundImage: MisionIMG,
     id: 3
-  }
+  },
+  {
+    title: "Descripción",
+    content: "ASIEL S.A. es salud para su familia, porque conocemos las necesidades de nuestros pacientes y hemos enfocado nuestros esfuerzos a satisfacer cada una de ellas.  Hoy poseemos una línea de productos integrada por: multivitamínicos para pacientes diabéticos y multivitamínicos pediátricos, gastrointestinal, antibióticos, analgésicos, etc.",
+    backgroundImage: DescripcionIMG,
+    id: 4
+  },
 ];
 
 const Home = () => {
