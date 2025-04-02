@@ -8,14 +8,13 @@ const Error404 = lazy(() => import('./pages/notFound/notFound'));
 
 function App() {
   return (
-    <div className="app-container">
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </Suspense>
-    </div>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+    </Suspense>
+
   );
 }
 

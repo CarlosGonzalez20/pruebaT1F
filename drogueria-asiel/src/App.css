@@ -1,4 +1,4 @@
-html, body {
+/* html, body {
   max-width: 100%;
   margin: 0;
 }
@@ -14,12 +14,15 @@ html, body {
   min-height: 100vh;
   background-color: var(--background-color);
   color: var(--text-color);
-}
+} */
 
-@media (max-width: 768px) {
-  html, body {
-    width: 50%;
-  }
+.home{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 /* * {
