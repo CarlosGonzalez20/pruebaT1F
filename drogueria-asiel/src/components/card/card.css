@@ -6,12 +6,17 @@
   width: 375px;
   position: relative;
   min-height: 200px;
+  background-color: white;
 }
 
 .card-overlay {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   height: 100%;
+}
+
+.card-overlay.no-bg {
+  background-color: transparent;
 }
 
 .card-header {
@@ -21,15 +26,14 @@
 
 .card-title {
   margin: 0;
-  font-size: 1.5rem;
+  font: 1.5rem/1.2 sans-serif;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.card-subtitle {
-  margin: 4px 0 0;
-  font-size: 1rem;
-  font-weight: normal;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+.no-bg .card-title,
+.no-bg .card-content {
+  color: #333;
+  text-shadow: none;
 }
 
 .card-body {
@@ -39,19 +43,4 @@
 .card-content {
   line-height: 1.6;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-/* Estilos cuando no hay imagen de fondo */
-.card:not([style*="background-image"]) {
-  background-color: white;
-}
-
-.card:not([style*="background-image"]) .card-overlay {
-  background-color: transparent;
-}
-
-.card:not([style*="background-image"]) .card-title,
-.card:not([style*="background-image"]) .card-content {
-  color: #333;
-  text-shadow: none;
 }

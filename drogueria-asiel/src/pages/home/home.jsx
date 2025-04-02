@@ -1,12 +1,12 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "./home.css";
-import Navbar from "../../components/navbar/navbar";
-import Card from "../../components/card/card";
-import HistoriaIMG from "../../assets/Images/historia.webp";
-import VisionIMG from "../../assets/Images/medicinas-vision.webp";
-import MisionIMG from "../../assets/Images/familias-mision.webp";
-import DescripcionIMG from "../../assets/Images/description-us.webp";
-import Footer from "../../components/footer/footer";
+const Navbar = lazy(() => import("../../components/navbar/navbar"));
+const Card = lazy(() => import("../../components/card/card"));
+import HistoriaIMG from "../../assets/Images/historia.webp?w=800&format=webp";
+import VisionIMG from "../../assets/Images/medicinas-vision.webp?w=800&format=webp";
+import MisionIMG from "../../assets/Images/familias-mision.webp?w=800&format=webp";
+import DescripcionIMG from "../../assets/Images/description-us.webp?w=800&format=webp";
+const Footer = lazy(() => import("../../components/footer/footer"));
 
 // Datos de las cards en un array para mejor mantenibilidad
 const cardData = [
@@ -39,28 +39,29 @@ const cardData = [
 const Home = () => {
   return (
     <div className="home">
-      <Navbar />
-      
-      {/* Hero Section - Mejor semántica con header y section */}
-      <header className="hero-section">
-        <div className="hero-content">
-          <h1 className="hero-title">SALUD PARA SU FAMILIA</h1>
-          <h2 className="hero-subtitle">MEDICAMENTOS DE CALIDAD</h2>
-        </div>
-      </header>
-      
-      {/* Cards Section - Mapeo dinámico de cards */}
-      <section className="cards-section">
-        {cardData.map(card => (
-          <Card 
-            key={card.id}
-            title={card.title}
-            content={card.content}
-            backgroundImage={card.backgroundImage}
-          />
-        ))}
-      </section>
-      <Footer />
+      <Suspense fallback={<div>Cargando...</div>}>
+        <Navbar />
+        
+        <header className="hero-section">
+          <div className="hero-content">
+            <h1 className="hero-title">SALUD PARA SU FAMILIA</h1>
+            <h2 className="hero-subtitle">MEDICAMENTOS DE CALIDAD</h2>
+          </div>
+        </header>
+        
+        <section className="cards-section">
+          {cardData.map(card => (
+            <Suspense key={card.id} fallback={<div>Cargando tarjeta...</div>}>
+              <Card 
+                title={card.title}
+                content={card.content}
+                backgroundImage={card.backgroundImage}
+              />
+            </Suspense>
+          ))}
+        </section>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

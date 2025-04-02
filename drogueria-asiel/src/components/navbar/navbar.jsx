@@ -1,42 +1,64 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import React, { useState, useCallback, memo, useMemo } from "react";
+import { Link } from 'react-router-dom';
 import "./navbar.css";
-import logo from "../../assets/Images/Logo_ASIELSA_01-11829bbd.webp";
+import logo from "../../assets/Images/Logo_ASIELSA_01-11829bbd.webp?w=150&format=webp";
 import SwitchTheme from "../SwitchTheme/switchtheme";
 
-const Navbar = () => {
+const NAV_LINKS = [
+    { path: "/", text: "INICIO" },
+    { path: "/nosotros", text: "SOBRE NOSOTROS" },
+    { path: "/productos", text: "PRODUCTOS" },
+    { path: "/contacto", text: "CONTÁCTENOS" },
+    { path: "/blog", text: "BLOG" }
+];
+
+const Navbar = memo(() => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    const toggleMenu = () => setIsMenuOpen(prev => !prev);
+    const handleLinkClick = useCallback(() => setIsMenuOpen(false), []);
 
     return (
         <nav className="navbar" aria-label="Navegación principal">
-            <a href="#inicio" className="containerLogo">
-                <img src={logo} alt="Droguería Asiel SA" className="logo"/>
-            </a>
-            <ul className={`menu ${isMenuOpen ? "open" : ""}`}>
-                <li><Link to="/" className="menu-link">INICIO</Link></li>
-                <li><Link to="/nosotros" className="menu-link">SOBRE NOSOTROS</Link></li>
-                <li><Link to="/productos" className="menu-link">PRODUCTOS</Link></li>
-                <li><Link to="/contacto" className="menu-link">CONTÁCTENOS</Link></li>
-                <li><Link to="/blog" className="menu-link">BLOG</Link></li>
-                <li className="switch-theme"><SwitchTheme /></li>
-            </ul>
+            <Link to="/" className="containerLogo">
+                <img 
+                    src={logo} 
+                    alt="Droguería Asiel SA" 
+                    className="logo"
+                    loading="lazy"
+                    width="150"
+                    height="115"
+                />
+            </Link>
+            
             <button 
-                className="menu-toggle" 
+                className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} 
                 onClick={toggleMenu}
-                aria-label="Menú de navegación"
+                aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
                 aria-expanded={isMenuOpen}
-                aria-controls="menu"
+                aria-controls="main-menu"
             >
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
+            
+            <ul className={`menu ${isMenuOpen ? "open" : ""}`} id="main-menu">
+                {NAV_LINKS.map((link) => (
+                    <li key={link.path}>
+                        <Link 
+                            to={link.path} 
+                            className="menu-link"
+                            onClick={handleLinkClick}
+                        >
+                            {link.text}
+                        </Link>
+                    </li>
+                ))}
+                <li className="switch-theme"><SwitchTheme /></li>
+            </ul>
         </nav>
     );
-};
+});
 
 export default Navbar;
