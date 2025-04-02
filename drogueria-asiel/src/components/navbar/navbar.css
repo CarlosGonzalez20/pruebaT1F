@@ -32,6 +32,11 @@
     height: 100%;
 }
 
+.account-icon {
+    color: var(--text-color);
+    width: 24px;
+}
+
 .menu {
     flex-grow: 1;
     display: flex;
@@ -148,6 +153,12 @@
 .menu.open li {
     padding: 10px 20px;
     text-align: right;
+}
+
+@media (max-width: 1250px) {
+    .menu {
+        gap: 3%;
+    }
 }
 
 @media (max-width: 1050px) {
