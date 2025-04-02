@@ -8,7 +8,7 @@
 }
 
 .hero-section {
-    background-image: url('../../assets/Images/home-asiel-02-6996f3e9.webp');
+    background-image: url('../../assets/Images/home-asiel-02-6996f3e9.webp?w=1920&format=webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -17,6 +17,16 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    background-image: url('../../assets/Images/home-asiel-02-6996f3e9.webp?w=1920&format=webp');
+    opacity: 0;
 }
 
 .hero-content {
