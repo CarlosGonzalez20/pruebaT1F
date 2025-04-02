@@ -73,6 +73,9 @@
 }
 
 @media (max-width: 768px) {
+    .home {
+        width: 100%;
+    }
     .hero-section {
         min-height: 75vh;
         background-image: "../../assets/Images/home-asiel-mobile.webp";
