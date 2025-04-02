@@ -51,7 +51,7 @@ const Home = () => {
         </div>
       </header>
       
-      <section className="cards-section">
+      <section className="cards-section" id="sobre-nosotros">
         {cardData.map(card => (
           <Card 
             key={card.id}

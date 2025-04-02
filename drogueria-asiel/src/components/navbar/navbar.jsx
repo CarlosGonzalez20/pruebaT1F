@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import "./navbar.css";
 import logo from "../../assets/Images/Logo_ASIELSA_01-11829bbd.webp?w=150&format=webp";
 import SwitchTheme from "../SwitchTheme/switchtheme";
+import ScrollLink from "../scrollLink/scrollLink";
 
 const NAV_LINKS = [
     { path: "/", text: "INICIO" },
-    { path: "/nosotros", text: "SOBRE NOSOTROS" },
+    { path: "#sobre-nosotros", text: "SOBRE NOSOTROS" },
     { path: "/productos", text: "PRODUCTOS" },
     { path: "/contacto", text: "CONTÁCTENOS" },
     { path: "/blog", text: "BLOG" },
@@ -67,14 +68,25 @@ const Navbar = memo(() => {
             <ul className={`menu ${isMenuOpen ? "open" : ""}`} id="main-menu">
                 {NAV_LINKS.map((link) => (
                     <li key={link.path}>
-                        <Link 
-                            to={link.path} 
-                            className={`menu-link ${link.icon ? 'with-icon' : ''}`}
-                            onClick={handleLinkClick}
-                            aria-label={link.icon ? 'Cuenta' : link.text}
-                        >
-                            {link.icon || link.text}
-                        </Link>
+                        {link.path.startsWith('#') ? (
+                            <ScrollLink 
+                                to={link.path} 
+                                className={`menu-link ${link.icon ? 'with-icon' : ''}`}
+                                onClick={handleLinkClick}
+                                aria-label={link.icon ? 'Cuenta' : link.text}
+                            >
+                                {link.icon || link.text}
+                            </ScrollLink>
+                        ) : (
+                            <Link 
+                                to={link.path} 
+                                className={`menu-link ${link.icon ? 'with-icon' : ''}`}
+                                onClick={handleLinkClick}
+                                aria-label={link.icon ? 'Cuenta' : link.text}
+                            >
+                                {link.icon || link.text}
+                            </Link>
+                        )}
                     </li>
                 ))}
                 <li className="switch-theme"><SwitchTheme /></li>
