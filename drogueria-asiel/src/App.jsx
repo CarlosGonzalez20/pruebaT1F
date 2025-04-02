@@ -1,11 +1,13 @@
-import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-// Componentes cargados dinámicamente
-const Home = lazy(() => import('./pages/home/home'));
+// Loader estático (mejor que lazy para el fallback)
+import Loader from './components/loader/loader';
+
+// Rutas dinámicas con prefetch implícito
+const Home = lazy(() => import(/* webpackPrefetch: true */ './pages/home/home'));
 const Error404 = lazy(() => import('./pages/notFound/notFound'));
-const Loader = lazy(() => import('./components/loader/loader'));
 
 function App() {
   return (

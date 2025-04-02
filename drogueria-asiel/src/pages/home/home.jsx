@@ -39,27 +39,30 @@ const cardData = [
 const Home = () => {
   return (
     <div className="home">
-      <Suspense fallback={<div>Cargando...</div>}>
+      <Suspense fallback={null}> {/* No mostrar fallback para navbar */}
         <Navbar />
-        
-        <header className="hero-section">
-          <div className="hero-content">
-            <h1 className="hero-title">SALUD PARA SU FAMILIA</h1>
-            <h2 className="hero-subtitle">MEDICAMENTOS DE CALIDAD</h2>
-          </div>
-        </header>
-        
-        <section className="cards-section">
-          {cardData.map(card => (
-            <Suspense key={card.id} fallback={<div>Cargando tarjeta...</div>}>
-              <Card 
-                title={card.title}
-                content={card.content}
-                backgroundImage={card.backgroundImage}
-              />
-            </Suspense>
-          ))}
-        </section>
+      </Suspense>
+      
+      <header className="hero-section">
+        {/* Imagen hero en CSS (ya optimizado) */}
+        <div className="hero-content">
+          <h1 className="hero-title">SALUD PARA SU FAMILIA</h1>
+          <h2 className="hero-subtitle">MEDICAMENTOS DE CALIDAD</h2>
+        </div>
+      </header>
+      
+      <section className="cards-section">
+        {cardData.map(card => (
+          <Card 
+            key={card.id}
+            title={card.title}
+            content={card.content}
+            backgroundImage={card.backgroundImage}
+          />
+        ))}
+      </section>
+
+      <Suspense fallback={null}>
         <Footer />
       </Suspense>
     </div>

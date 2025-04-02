@@ -2,16 +2,48 @@
 <html lang="es-es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/icono.ico" />
-    <link rel="preload" href="/assets/Images/home-asiel-02-6996f3e9.webp" as="image">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <base href="https://asielsa.com/"> -->
-    <meta name="keywords" content="Asiel en Guatemala-Medicamentos de Calidad  accesible para toda la familia asiedol asiebronc-compuesto halosporina asiebronc-compuesto halosporina ketim halosporina ketim oxius ASIELSA es una empresa farmacéutica 100%">
-    <meta name="description" content="Asiel en Guatemala-Medicamentos de Calidad  accesible para toda la familia asiedol asiebronc-compuesto halosporina asiebronc-compuesto halosporina ketim halosporina ketim oxius ">
-    <title>Droguería Asiel, S.A. - Productos y Medicamentos de Calidad - Droguería Asiel, S.A.</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> <!-- Mejor que .ico -->
+    
+    <!-- Precarga solo para móvil (reduce peso en desktop) -->
+    <link rel="preload" 
+          href="/src/assets/Images/home-asiel-mobile.webp" 
+          as="image"
+          media="(max-width: 768px)">
+    
+    <!-- Precarga para desktop -->
+    <link rel="preload" 
+          href="/src/assets/Images/home-asiel-02-6996f3e9.webp" 
+          as="image"
+          media="(min-width: 769px)">
+    
+    <!-- Fuentes con preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" 
+          href="/fonts/tu-fuente.woff2" 
+          as="font" 
+          type="font/woff2" 
+          crossorigin
+          fetchpriority="high">
+    
+    <!-- Metas esenciales para móvil -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Medicamentos de calidad para familias guatemaltecas. Droguería Asiel S.A. con más de 20 años de experiencia.">
+    
+    <!-- Open Graph (mejor compartido en redes) -->
+    <meta property="og:image" content="/src/assets/Images/og-image.webp">
+    <meta property="og:title" content="Droguería Asiel - Salud para tu familia">
+    
+    <title>Droguería Asiel, S.A. - Medicamentos de Calidad en Guatemala</title>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Scripts con defer -->
+    <script type="module" src="/src/main.jsx" defer></script>
+    
+    <!-- Precarga del bundle principal -->
+    <link rel="modulepreload" href="/src/main.jsx">
   </body>
 </html>
