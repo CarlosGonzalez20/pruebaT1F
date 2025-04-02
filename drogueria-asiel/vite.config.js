@@ -4,14 +4,20 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      // Configuración simplificada que debería funcionar sin problemas
+      jsxRuntime: 'automatic',
+      babel: {
+        plugins: ['@emotion/babel-plugin'],
+      }
+    }),
     ViteImageOptimizer({
       webp: {
-        quality: 70, // Más bajo para móvil
-        effort: 6,   // Máxima compresión
+        quality: 70,
+        effort: 6,
       },
       jpeg: {
-        quality: 60, // Ahorro significativo
+        quality: 60,
       },
       png: {
         quality: 70,
@@ -20,7 +26,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    chunkSizeWarningLimit: 800, // Aumentar límite para chunks grandes
+    chunkSizeWarningLimit: 800,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -29,5 +35,5 @@ export default defineConfig({
         },
       },
     },
-  },
+  }
 });

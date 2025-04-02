@@ -2,8 +2,10 @@
 <html lang="es-es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> <!-- Mejor que .ico -->
     
+    <link rel="icon" href="/icono.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/icono.ico" type="image/x-icon">
+
     <!-- Precarga solo para móvil (reduce peso en desktop) -->
     <link rel="preload" 
           href="/src/assets/Images/home-asiel-mobile.webp" 
@@ -15,16 +17,6 @@
           href="/src/assets/Images/home-asiel-02-6996f3e9.webp" 
           as="image"
           media="(min-width: 769px)">
-    
-    <!-- Fuentes con preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" 
-          href="/fonts/tu-fuente.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossorigin
-          fetchpriority="high">
     
     <!-- Metas esenciales para móvil -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
