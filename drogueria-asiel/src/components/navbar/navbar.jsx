@@ -2,6 +2,7 @@ import React, { useState, useCallback, memo } from "react";
 import { Link } from 'react-router-dom';
 import "./navbar.css";
 import logo from "../../assets/Images/Logo_ASIELSA_01-11829bbd.webp?w=150&format=webp";
+import logo_mobile from "../../assets/Images/Logo_ASIELSA_mobile.webp?w=100&format=webp";
 import SwitchTheme from "../SwitchTheme/switchtheme";
 import ScrollLink from "../scrollLink/scrollLink";
 
@@ -46,13 +47,20 @@ const Navbar = memo(() => {
                 <img 
                     src={logo} 
                     alt="Droguería Asiel SA" 
-                    className="logo"
+                    className="logo desktop-logo"
                     loading="lazy"
                     width="150"
                     height="115"
                 />
+                <img 
+                    src={logo_mobile} 
+                    alt="Droguería Asiel SA" 
+                    className="logo mobile-logo"
+                    loading="lazy"
+                    width="100"
+                    height="auto"
+                />
             </Link>
-            
             <button 
                 className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} 
                 onClick={toggleMenu}
