@@ -20,15 +20,6 @@
     position: relative;
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    background-image: url('../../assets/Images/home-asiel-02-6996f3e9.webp?w=1920&format=webp');
-    opacity: 0;
-}
-
 .hero-content {
     width: 50%;
     background-color: rgba(240, 248, 255, 0.7);
