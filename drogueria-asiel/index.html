@@ -1,44 +1,28 @@
 <!doctype html>
 <html lang="es-es">
-  <head>
-    <meta charset="UTF-8" />
-    
-    <link rel="icon" href="/icono.ico" type="image/x-icon">
+<head>
+  <meta charset="UTF-8" />
+  
+  <!-- Favicon optimizado -->
+  <link rel="icon" href="/icono.ico" sizes="any">
 
-    <!-- Precarga solo para móvil (reduce peso en desktop) -->
-    <link rel="preload" 
-          href="/src/assets/Images/home-asiel-mobile.webp" 
-          as="image"
-          media="(max-width: 768px)">
-    
-    <!-- Precarga para desktop -->
-    <link rel="preload" 
-          href="/src/assets/Images/home-asiel-02-6996f3e9.webp" 
-          as="image"
-          media="(min-width: 769px)">
-    
-    <!-- Metas esenciales para móvil -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Medicamentos de calidad para familias guatemaltecas. Droguería Asiel S.A. con más de 20 años de experiencia.">
-    
-    <!-- Open Graph (mejor compartido en redes) -->
-    <meta property="og:image" content="https://prueba-t1-f.vercel.app/icono.ico">
-    <meta property="og:title" content="Droguería Asiel - Salud para tu familia">
-
-    <!-- <base href="https://asielsa.com/"> -->
-    <meta name="keywords" content="Asiel en Guatemala-Medicamentos de Calidad  accesible para toda la familia asiedol asiebronc-compuesto halosporina asiebronc-compuesto halosporina ketim halosporina ketim oxius ASIELSA es una empresa farmacéutica 100%">
-    <meta name="description" content="Asiel en Guatemala-Medicamentos de Calidad  accesible para toda la familia asiedol asiebronc-compuesto halosporina asiebronc-compuesto halosporina ketim halosporina ketim oxius ">
-    
-    <title>Droguería Asiel, S.A. - Medicamentos de Calidad en Guatemala</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    
-    <!-- Scripts con defer -->
-    <script type="module" src="/src/main.jsx" defer></script>
-    
-    <!-- Precarga del bundle principal -->
-    <link rel="modulepreload" href="/src/main.jsx">
-  </body>
+  <!-- <base href="https://asielsa.com/"> -->
+  <meta name="keywords" content="Asiel en Guatemala-Medicamentos de Calidad  accesible para toda la familia asiedol asiebronc-compuesto halosporina asiebronc-compuesto halosporina ketim halosporina ketim oxius ASIELSA es una empresa farmacéutica 100%">
+  <meta name="description" content="Asiel en Guatemala-Medicamentos de Calidad  accesible para toda la familia asiedol asiebronc-compuesto halosporina asiebronc-compuesto halosporina ketim halosporina ketim oxius ">
+      
+  <!-- Open Graph mínimo -->
+  <meta property="og:url" content="https://prueba-t1-f.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Droguería Asiel - Salud para tu familia">
+  
+  <!-- Viewport y metadatos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Medicamentos de calidad para familias guatemaltecas. Droguería Asiel S.A. con más de 20 años de experiencia.">
+  
+  <title>Droguería Asiel, S.A. - Medicamentos de Calidad en Guatemala</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx" defer></script>
+</body>
 </html>
