@@ -36,9 +36,10 @@ const SwitchTheme = memo(() => {
     }, [isDarkMode]);
 
     return (
-        <div className="switch-button" aria-label="Cambiar tema">
+        <div className="switch-button">
             <input 
                 type="checkbox" 
+                aria-label="Cambiar tema"
                 id="switch-label" 
                 className="switch-button__checkbox" 
                 checked={isDarkMode} 
