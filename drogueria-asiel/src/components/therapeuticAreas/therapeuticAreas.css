@@ -1,0 +1,148 @@
+.therapeutic-areas-container {
+    border-radius: 25px;
+    background-color: var(--background-color-therapeutic);
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px var(--box-shadow-color);
+    width: 94%;
+    max-width: 1200px;
+    margin: 15px auto;
+}
+
+.therapeutic-areas-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.areas-content {
+    display: flex;
+    gap: 30px;
+}
+
+.areas-list {
+    flex: 1;
+}
+
+.areas-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.areas-list li {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.areas-list li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.areas-list li.active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.area-description {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.areas-gallery {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.gallery-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery-item {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-image-container {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.mobile-image-container img {
+    max-width: 100px;
+    height: auto;
+    object-fit: contain;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item.active {
+    outline: 3px solid var(--primary-color);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+}
+
+.image-placeholder {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .therapeutic-areas-container {
+        width: 85%;
+        padding: 20px 15px;
+    }
+    
+    .areas-content {
+        flex-direction: column;
+    }
+    
+    .gallery-row {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .gallery-item {
+        width: 120px;
+        height: 120px;
+    }
+
+    .areas-gallery {
+        display: none;
+    }
+    
+    .area-description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

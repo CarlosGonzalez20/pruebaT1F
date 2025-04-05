@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import "./home.css";
 const Navbar = lazy(() => import("../../components/navbar/navbar"));
 const Card = lazy(() => import("../../components/card/card"));
+const TherapeuticAreas = lazy(() => import("../../components/therapeuticAreas/therapeuticAreas"));
 import HistoriaIMG from "../../assets/Images/historia.webp?w=800&format=webp";
 import VisionIMG from "../../assets/Images/medicinas-vision.webp?w=800&format=webp";
 import MisionIMG from "../../assets/Images/familias-mision.webp?w=800&format=webp";
@@ -61,6 +62,8 @@ const Home = () => {
           />
         ))}
       </section>
+
+      <TherapeuticAreas />
 
       <Suspense fallback={null}>
         <Footer />
