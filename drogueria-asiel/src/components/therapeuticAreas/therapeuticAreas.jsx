@@ -6,7 +6,7 @@ import EstomagoIMG from "../../assets/Images/blanco-iconos-stomach.webp";
 import CerebroIMG from "../../assets/Images/blanco-iconos-brain.webp";
 import CorazonIMG from "../../assets/Images/blanco-iconos-heart.webp";
 import IntestinosIMG from "../../assets/Images/intestino-blanco.webp";
-import RiñonesIMG from "../../assets/Images/riñones-blanco.webp";
+import HigadoIMG from "../../assets/Images/higado-blanco.webp";
 import BoteIMG from "../../assets/Images/bote-blanco.webp";
 
 const TherapeuticAreas = memo(() => {
@@ -28,7 +28,7 @@ const TherapeuticAreas = memo(() => {
       id: 1,
       name: "Multivitamínicos para pacientes diabéticos",
       description: "Formulaciones especializadas para pacientes en diálisis que ayudan a reponer nutrientes esenciales perdidos durante el tratamiento.",
-      image: RiñonesIMG
+      image: HigadoIMG
     },
     {
       id: 2,
