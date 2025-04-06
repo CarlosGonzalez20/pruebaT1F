@@ -51,8 +51,8 @@ const Home = () => {
           <h2 className="hero-subtitle">MEDICAMENTOS DE CALIDAD</h2>
         </div>
       </header>
-      
-      <section className="cards-section" id="sobre-nosotros">
+      <div id="sobre-nosotros"></div>
+      <section className="cards-section">
         {cardData.map(card => (
           <Card 
             key={card.id}
@@ -66,6 +66,7 @@ const Home = () => {
       <TherapeuticAreas />
 
       <Suspense fallback={null}>
+        <div id ="contacto"></div>
         <Footer />
       </Suspense>
     </div>

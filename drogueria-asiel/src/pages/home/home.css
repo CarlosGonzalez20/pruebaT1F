@@ -7,6 +7,10 @@
     overflow-x: hidden;
 }
 
+#sobre-nosotros {
+    scroll-margin-top: 110px;
+  }
+
 .hero-section {
     background-image: url('../../assets/Images/home-asiel-02-6996f3e9.webp?w=1920&format=webp');
     background-repeat: no-repeat;
@@ -65,6 +69,9 @@
 }
 
 @media (max-width: 768px) {
+    #sobre-nosotros {
+        scroll-margin-top: 0;
+    }
 
     .hero-section {
         min-height: 75vh;

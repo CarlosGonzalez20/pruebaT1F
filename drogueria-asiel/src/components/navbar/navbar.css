@@ -113,6 +113,62 @@
     transition: all 0.3s ease-in-out;
 }
 
+/* Estilos del submenú */
+.submenu-container {
+    position: relative;
+}
+
+.submenu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.submenu-arrow {
+    font-size: 0.7em;
+    transition: transform 0.3s ease;
+}
+
+.submenu-arrow.open {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--box-shadow-color);
+    padding: 10px;
+    min-width: 200px;
+    z-index: 1001;
+    list-style: none;
+}
+
+.submenu-item {
+    display: block;
+    padding: 8px 12px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.submenu-item:hover {
+    background-color: var(--hover-color);
+}
+
+/* Estilos para móvil */
 .menu-toggle {
     display: none;
     position: fixed;
@@ -156,6 +212,19 @@
 
 .menu.open li {
     padding: 10px 20px;
+    text-align: right;
+}
+
+/* Ajustes para el submenú en móvil */
+.menu.open .submenu {
+    position: static;
+    box-shadow: none;
+    padding: 5px 0 0 0;
+    min-width: auto;
+}
+
+.menu.open .submenu-item {
+    padding: 8px 0;
     text-align: right;
 }
 
