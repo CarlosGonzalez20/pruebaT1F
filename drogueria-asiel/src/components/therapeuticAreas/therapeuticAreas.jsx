@@ -6,8 +6,8 @@ import EstomagoIMG from "../../assets/Images/blanco-iconos-stomach.webp";
 import CerebroIMG from "../../assets/Images/blanco-iconos-brain.webp";
 import CorazonIMG from "../../assets/Images/blanco-iconos-heart.webp";
 import IntestinosIMG from "../../assets/Images/intestino-blanco.webp";
-import PulmonesIMG from "../../assets/Images/pulmones-blanco.webp";
 import RiñonesIMG from "../../assets/Images/riñones-blanco.webp";
+import BoteIMG from "../../assets/Images/bote-blanco.webp";
 
 const TherapeuticAreas = memo(() => {
   const [activeArea, setActiveArea] = useState(null);
@@ -52,7 +52,7 @@ const TherapeuticAreas = memo(() => {
       id: 5,
       name: "Analgésicos",
       description: "Medicamentos para el alivio del dolor, desde analgésicos comunes hasta opioides para el manejo del dolor severo.",
-      image: PulmonesIMG
+      image: BoteIMG
     },
     {
       id: 6,
