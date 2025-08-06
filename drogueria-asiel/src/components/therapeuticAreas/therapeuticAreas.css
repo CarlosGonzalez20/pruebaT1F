@@ -1,3 +1,27 @@
+/*temporal*/
+
+.color-buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.color-buttons button {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  margin: 0 5px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.color-buttons button:hover {
+  background-color: #f0f0f0;
+}
+/*fin temporal*/
+
 .therapeutic-areas-container {
     border-radius: 25px;
     background-color: var(--background-color-therapeutic);
