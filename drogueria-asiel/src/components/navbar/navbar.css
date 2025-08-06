@@ -149,7 +149,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 10px var(--box-shadow-color);
     padding: 10px;
-    min-width: 200px;
+    min-width: 240px;
     z-index: 1001;
     list-style: none;
 }
