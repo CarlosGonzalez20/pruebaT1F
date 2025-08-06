@@ -16,7 +16,7 @@ const NAV_LINKS = [
         path: "#contacto",
         submenu: [
             { type: "email", value: "info@asielsa.com" },
-            { type: "phone", value: "+123456789" }
+            { type: "phone", value: "+502 2242-2754" }
         ]
     },
     { path: "/blog", text: "BLOG" },
