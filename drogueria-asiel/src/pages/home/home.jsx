@@ -51,6 +51,7 @@ const Home = () => {
           <h2 className="hero-subtitle">MEDICAMENTOS DE CALIDAD</h2>
         </div>
       </header>
+      <TherapeuticAreas />
       <div id="sobre-nosotros"></div>
       <section className="cards-section">
         {cardData.map(card => (
@@ -62,8 +63,6 @@ const Home = () => {
           />
         ))}
       </section>
-
-      <TherapeuticAreas />
 
       <Suspense fallback={null}>
         <div id ="contacto"></div>
