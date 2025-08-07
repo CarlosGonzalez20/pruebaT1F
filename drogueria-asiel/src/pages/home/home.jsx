@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState, useEffect } from "react";
 import "./home.css";
 const Navbar = lazy(() => import("../../components/navbar/navbar"));
 const Card = lazy(() => import("../../components/card/card"));
