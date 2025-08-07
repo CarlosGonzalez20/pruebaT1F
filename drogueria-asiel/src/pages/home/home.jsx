@@ -3,6 +3,7 @@ import "./home.css";
 const Navbar = lazy(() => import("../../components/navbar/navbar"));
 const Card = lazy(() => import("../../components/card/card"));
 const TherapeuticAreas = lazy(() => import("../../components/therapeuticAreas/therapeuticAreas"));
+const InfiniteCarousel = lazy(() => import("../../components/infiniteCarousel/infiniteCarousel"));
 import HistoriaIMG from "../../assets/Images/historia.webp?w=800&format=webp";
 import VisionIMG from "../../assets/Images/medicinas-vision.webp?w=800&format=webp";
 import MisionIMG from "../../assets/Images/familias-mision.webp?w=800&format=webp";
@@ -37,6 +38,16 @@ const cardData = [
   },
 ];
 
+// Imagenes mostradas en el carousel de imágenes de clientes (como farmacias, hospitales, etc)
+const imageList = [
+  VisionIMG,
+  VisionIMG,
+  VisionIMG,
+  MisionIMG,
+  MisionIMG,
+  MisionIMG
+];
+
 const Home = () => {
   return (
     <div className="home">
@@ -52,6 +63,8 @@ const Home = () => {
         </div>
       </header>
       <TherapeuticAreas />
+      <h2>Puedes encntrar nuestros productos en:</h2>
+      <InfiniteCarousel images={imageList} />
       <div id="sobre-nosotros"></div>
       <section className="cards-section">
         {cardData.map(card => (
