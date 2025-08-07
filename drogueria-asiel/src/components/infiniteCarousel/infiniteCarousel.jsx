@@ -1,5 +1,5 @@
 import React from "react";
-import "./InfiniteCarousel.css";
+import "./infiniteCarousel.css";
 
 const InfiniteCarousel = ({ images }) => {
   // Repite las imágenes para lograr el efecto de loop infinito
