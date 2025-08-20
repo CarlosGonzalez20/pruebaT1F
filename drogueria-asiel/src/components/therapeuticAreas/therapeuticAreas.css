@@ -159,6 +159,7 @@
         height: 120px;
     }
 
+    /* Ocultar la galería de áreas pero mostrar productos cuando estén en móvil */
     .areas-gallery {
         display: none;
     }
@@ -167,5 +168,41 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    
+    /* Nuevos estilos para productos en móvil */
+    .mobile-products-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+    .mobile-product-item {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    
+    .mobile-product-item:hover {
+        transform: scale(1.05);
+    }
+    
+    .mobile-product-item img {
+        max-width: 100%;
+        height: auto;
+        max-height: 80px;
+        object-fit: contain;
+    }
+    
+    .click-hint {
+        text-align: center;
+        font-size: 0.9em;
     }
 }

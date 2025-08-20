@@ -170,6 +170,29 @@ const TherapeuticAreas = memo(() => {
                 {activeArea === area.id && (
                   <div className="area-description" style={{ color: currentScheme.text }}>
                     {area.description}
+                    
+                    {/* Mostrar productos solo en móvil cuando un área está activa */}
+                    {isMobile && activeArea === area.id && (
+                      <div className="mobile-products">
+                        <p className="click-hint" style={{ color: currentScheme.text, fontWeight: "bold", margin: "10px 0" }}>
+                          Da clic en un producto para ver sus especificaciones
+                        </p>
+                        <div className="mobile-products-grid">
+                          {area.productsImages.map((item, idx) => (
+                            <div 
+                              key={idx} 
+                              className="mobile-product-item clickable" 
+                              onClick={(e) => {
+                                e.stopPropagation(); // Prevenir que se active el click del área
+                                handleProductClick(item.id);
+                              }}
+                            >
+                              <img src={item.src} alt={`producto-${idx}`} />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </li>
@@ -177,6 +200,7 @@ const TherapeuticAreas = memo(() => {
           </ul>
         </div>
 
+        {/* Mostrar galería solo en desktop */}
         {!isMobile && (
           <div className="areas-gallery">
             {activeArea && (
