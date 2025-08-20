@@ -10,8 +10,6 @@ import IntestinosIMG from "../../assets/Images/intestino-blanco.webp";
 import HigadoIMG from "../../assets/Images/higado-blanco.webp";
 import BoteIMG from "../../assets/Images/bote-blanco.webp";
 
-// Imagenes para los productos de cada área
-import Logo from "../../assets/Images/Logo_ASIELSA_01-11829bbd.webp?w=150&format=webp";
 
 const colorSchemes = [
   { id: 1, background: "#136fba", text: "#ffffff", shadow: "rgba(174, 214, 129, 0.3)" },
@@ -45,12 +43,12 @@ const TherapeuticAreas = memo(() => {
       name: "Multivitamínicos para pacientes diabéticos",
       description: "Formulaciones especializadas para pacientes en diálisis que ayudan a reponer nutrientes esenciales perdidos durante el tratamiento.",
       productsImages: [ // 6 productos diferentes
-        { src: Logo, id: "producto-1" }, // cambiar el id por el de la base de datos
-        { src: Logo, id: "producto-2" },
-        { src: Logo, id: "producto-3" },
-        { src: Logo, id: "producto-4" },
-        { src: Logo, id: "producto-5" },
-        { src: Logo, id: "producto-6" }
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+1", id: "producto-1" }, // cambiar el id por el de la base de datos
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+2", id: "producto-2" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+3", id: "producto-3" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+4", id: "producto-4" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+5", id: "producto-5" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+6", id: "producto-6" }
       ]
     },
     {
@@ -58,12 +56,12 @@ const TherapeuticAreas = memo(() => {
       name: "Multivitamínicos pediátricos",
       description: "Vitaminas especialmente formuladas para niños, con dosajes adecuados y sabores agradables para mejorar la adherencia al tratamiento.",
       productsImages: [ // 6 productos diferentes
-        { src: Logo, id: "producto-1" },
-        { src: Logo, id: "producto-2" },
-        { src: Logo, id: "producto-3" },
-        { src: Logo, id: "producto-4" },
-        { src: Logo, id: "producto-5" },
-        { src: Logo, id: "producto-6" }
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+1", id: "producto-1" }, // cambiar el id por el de la base de datos
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+2", id: "producto-2" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+3", id: "producto-3" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+4", id: "producto-4" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+5", id: "producto-5" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+6", id: "producto-6" }
       ]
     },
     {
@@ -71,12 +69,12 @@ const TherapeuticAreas = memo(() => {
       name: "Gastrointestinal",
       description: "Medicamentos para el tratamiento de úlceras, reflujo, gastritis y otros trastornos del sistema digestivo.",
       productsImages: [ // 6 productos diferentes
-        { src: Logo, id: "producto-1" },
-        { src: Logo, id: "producto-2" },
-        { src: Logo, id: "producto-3" },
-        { src: Logo, id: "producto-4" },
-        { src: Logo, id: "producto-5" },
-        { src: Logo, id: "producto-6" }
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+1", id: "producto-1" }, // cambiar el id por el de la base de datos
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+2", id: "producto-2" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+3", id: "producto-3" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+4", id: "producto-4" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+5", id: "producto-5" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+6", id: "producto-6" }
       ]
     },
     {
@@ -84,12 +82,12 @@ const TherapeuticAreas = memo(() => {
       name: "Antibióticos",
       description: "Amplia gama de antibióticos para el tratamiento de infecciones bacterianas, incluyendo penicilinas, cefalosporinas y macrólidos.",
       productsImages: [ // 6 productos diferentes
-        { src: Logo, id: "producto-1" },
-        { src: Logo, id: "producto-2" },
-        { src: Logo, id: "producto-3" },
-        { src: Logo, id: "producto-4" },
-        { src: Logo, id: "producto-5" },
-        { src: Logo, id: "producto-6" }
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+1", id: "producto-1" }, // cambiar el id por el de la base de datos
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+2", id: "producto-2" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+3", id: "producto-3" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+4", id: "producto-4" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+5", id: "producto-5" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+6", id: "producto-6" }
       ]
     },
     {
@@ -97,12 +95,12 @@ const TherapeuticAreas = memo(() => {
       name: "Analgésicos",
       description: "Medicamentos para el alivio del dolor, desde analgésicos comunes hasta opioides para el manejo del dolor severo.",
       productsImages: [ // 6 productos diferentes
-        { src: Logo, id: "producto-1" },
-        { src: Logo, id: "producto-2" },
-        { src: Logo, id: "producto-3" },
-        { src: Logo, id: "producto-4" },
-        { src: Logo, id: "producto-5" },
-        { src: Logo, id: "producto-6" }
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+1", id: "producto-1" }, // cambiar el id por el de la base de datos
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+2", id: "producto-2" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+3", id: "producto-3" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+4", id: "producto-4" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+5", id: "producto-5" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+6", id: "producto-6" }
       ]
     },
     {
@@ -110,12 +108,12 @@ const TherapeuticAreas = memo(() => {
       name: "Cardiovascular",
       description: "Tratamientos para hipertensión, insuficiencia cardíaca, arritmias y otros trastornos del sistema cardiovascular.",
       productsImages: [ // 6 productos diferentes
-        { src: Logo, id: "producto-1" },
-        { src: Logo, id: "producto-2" },
-        { src: Logo, id: "producto-3" },
-        { src: Logo, id: "producto-4" },
-        { src: Logo, id: "producto-5" },
-        { src: Logo, id: "producto-6" }
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+1", id: "producto-1" }, // cambiar el id por el de la base de datos
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+2", id: "producto-2" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+3", id: "producto-3" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+4", id: "producto-4" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+5", id: "producto-5" },
+        { src: "https://placehold.co/600x400/gray/white?text=Prueba+6", id: "producto-6" }
       ]
     }
   ];
