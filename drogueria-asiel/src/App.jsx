@@ -4,6 +4,7 @@ import './App.css';
 import Loader from './components/loader/loader';
 
 const Home = lazy(() => import('./pages/home/home'));
+const Testusuario = lazy(() => import('./pages/Users/test-usuarios'));
 const Error404 = lazy(() => import('./pages/notFound/notFound'));
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/test-usuarios" element={<Testusuario />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </Suspense>
