@@ -4,7 +4,7 @@ import "./navbar.css";
 import logo from "../../assets/Images/Logo_ASIELSA_01-11829bbd.webp?w=150&format=webp";
 import logo_mobile from "../../assets/Images/Logo_ASIELSA_mobile.webp?w=100&format=webp";
 import SwitchTheme from "../SwitchTheme/switchtheme";
-import ScrollLink from "../scrollLink/scrollLink";
+import ScrollLink from "../Home/scrollLink/scrollLink";
 
 // Moved outside component to prevent recreation on every render
 const NAV_LINKS = [

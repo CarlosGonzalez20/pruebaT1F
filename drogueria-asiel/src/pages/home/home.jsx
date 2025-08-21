@@ -1,9 +1,9 @@
 import React, { lazy, Suspense, useState, useEffect } from "react";
 import "./home.css";
 const Navbar = lazy(() => import("../../components/navbar/navbar"));
-const Card = lazy(() => import("../../components/card/card"));
-const TherapeuticAreas = lazy(() => import("../../components/therapeuticAreas/therapeuticAreas"));
-const InfiniteCarousel = lazy(() => import("../../components/infiniteCarousel/infiniteCarousel"));
+const Card = lazy(() => import("../../components/Home/card/card"));
+const TherapeuticAreas = lazy(() => import("../../components/Home/therapeuticAreas/therapeuticAreas"));
+const InfiniteCarousel = lazy(() => import("../../components/Home/infiniteCarousel/infiniteCarousel"));
 import HistoriaIMG from "../../assets/Images/historia.webp?w=800&format=webp";
 import VisionIMG from "../../assets/Images/medicinas-vision.webp?w=800&format=webp";
 import MisionIMG from "../../assets/Images/familias-mision.webp?w=800&format=webp";

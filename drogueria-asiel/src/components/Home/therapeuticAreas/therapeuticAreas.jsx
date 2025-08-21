@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./therapeuticAreas.css";
 
 // Imágenes originales
-import EstomagoIMG from "../../assets/Images/blanco-iconos-stomach.webp";
-import CerebroIMG from "../../assets/Images/blanco-iconos-brain.webp";
-import CorazonIMG from "../../assets/Images/blanco-iconos-heart.webp";
-import IntestinosIMG from "../../assets/Images/intestino-blanco.webp";
-import HigadoIMG from "../../assets/Images/higado-blanco.webp";
-import BoteIMG from "../../assets/Images/bote-blanco.webp";
+import EstomagoIMG from "../../../assets/Images/blanco-iconos-stomach.webp";
+import CerebroIMG from "../../../assets/Images/blanco-iconos-brain.webp";
+import CorazonIMG from "../../../assets/Images/blanco-iconos-heart.webp";
+import IntestinosIMG from "../../../assets/Images/intestino-blanco.webp";
+import HigadoIMG from "../../../assets/Images/higado-blanco.webp";
+import BoteIMG from "../../../assets/Images/bote-blanco.webp";
 
 
 const colorSchemes = [
