@@ -1,0 +1,179 @@
+.user-dashboard {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  color: #e2e8f0;
+}
+
+.home-btn {
+  background: #48bb78;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.home-btn:hover {
+  background: #38a169;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.dashboard-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #2d3748;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.disabled-input {
+  background: #f7fafc;
+  color: #718096;
+  cursor: not-allowed;
+  box-sizing: border-box;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.action-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn:not(.secondary):not(.admin) {
+  background: #667eea;
+  color: white;
+}
+
+.action-btn:not(.secondary):not(.admin):hover {
+  background: #5a67d8;
+}
+
+.action-btn.secondary {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+.action-btn.secondary:hover {
+  background: #cbd5e0;
+}
+
+.action-btn.admin {
+  background: #dd6b20;
+  color: white;
+}
+
+.action-btn.admin:hover {
+  background: #c05621;
+}
+
+.email-warning {
+  font-size: 0.8rem;
+  color: #e53e3e;
+  margin: 5px 0 0 0;
+  font-style: italic;
+}
+
+.action-btn:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+}
+
+.action-btn:disabled:hover {
+  background: #cbd5e0;
+}
+
+@media (max-width: 968px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .dashboard-card {
+    padding: 20px;
+  }
+  
+  .home-btn {
+    align-self: stretch;
+    text-align: center;
+  }
+}

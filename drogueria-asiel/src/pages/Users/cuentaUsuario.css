@@ -1,0 +1,122 @@
+/* apiTest.css - Estilos para la aplicación de prueba de API */
+
+.api-test-app {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  width: 97%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #312e81 100%);
+  padding: 20px;
+  gap: 20px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.8rem;
+}
+
+.app-header span {
+  color: #2d3748;
+  font-size: 0.9rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-role {
+  background: #667eea;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  /* cursor: default; */
+}
+
+.logout-btn {
+  background: #f56565;
+  color: white;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background: #c53030;
+}
+
+.app-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 0;
+}
+
+.api-response-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.api-response-panel h3 {
+  margin-top: 0;
+  color: #2d3748;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+.response-content {
+  max-height: 300px;
+  overflow-y: auto;
+  background: #f7fafc;
+  color: black;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .api-test-app {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .app-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .user-info {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .api-response-panel {
+    padding: 15px;
+  }
+}
