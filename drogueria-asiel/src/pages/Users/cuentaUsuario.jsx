@@ -140,6 +140,20 @@ function ApiTestApp() {
       <main className="app-main">
         {renderCurrentView()}
       </main>
+
+      {/* PANEL SOLO PARA ADMINS */}
+      {currentUser && currentUser.rol === 'admin' && (
+        <aside className="api-response-panel">
+          <h3>🔧 Panel de Debug (Solo Admin)</h3>
+          <div className="response-content">
+            {apiResponse ? (
+              <pre>{JSON.stringify(apiResponse, null, 2)}</pre>
+            ) : (
+              <p>Realiza una operación para ver los resultados de API</p>
+            )}
+          </div>
+        </aside>
+      )}
     </div>
   );
 }
