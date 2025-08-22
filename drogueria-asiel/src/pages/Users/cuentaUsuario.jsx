@@ -12,7 +12,12 @@ const AdminPanel = lazy(() => import('../../components/Usuarios/adminPanel/Admin
 
 function ApiTestApp() {
   const [currentView, setCurrentView] = useState('login');
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://dasa-api-xrec.onrender.com';
+  let API_BASE_URL;
+  try {
+    API_BASE_URL = process.env.REACT_APP_API_URL || 'https://dasa-api-xrec.onrender.com';
+  } catch (error) {
+    API_BASE_URL = 'http://localhost:3000'; // Valor por defecto para desarrollo
+  }
   const [apiBaseUrl] = useState(`${API_BASE_URL}/usuarios`);
   const [apiResponse, setApiResponse] = useState(null);
   const navigate = useNavigate();
