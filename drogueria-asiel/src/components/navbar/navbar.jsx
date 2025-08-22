@@ -21,7 +21,7 @@ const NAV_LINKS = [
     },
     { path: "/blog", text: "BLOG" },
     { 
-        path: "/test-usuarios", 
+        path: "/usuario", 
         icon: (
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 

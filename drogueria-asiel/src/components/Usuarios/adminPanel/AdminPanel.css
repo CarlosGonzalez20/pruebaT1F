@@ -14,7 +14,7 @@
 
 .admin-header h2 {
   margin: 0;
-  color: #2d3748;
+  color: white;
 }
 
 .admin-content {
@@ -124,6 +124,7 @@
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.2s;
+  box-sizing: border-box;
 }
 
 .user-id-input input:focus {

@@ -10,11 +10,11 @@ const RegistrationForm = lazy(() => import('../../components/Usuarios/registrati
 const UserDashboard = lazy(() => import('../../components/Usuarios/userDashboard/UserDashboard'));
 const AdminPanel = lazy(() => import('../../components/Usuarios/adminPanel/AdminPanel'));
 
-function ApiTestApp() {
+function CuentaUsuaraio() {
   const [currentView, setCurrentView] = useState('login');
   let API_BASE_URL;
   try {
-    API_BASE_URL = process.env.REACT_APP_API_URL || 'https://dasa-api-xrec.onrender.com';
+    API_BASE_URL = process.env.API_URL;
   } catch (error) {
     API_BASE_URL = 'http://localhost:3000'; // Valor por defecto para desarrollo
   }
@@ -132,7 +132,7 @@ function ApiTestApp() {
   return (
     <div className="api-test-app">
       <header className="app-header">
-        <h1>Panel de Pruebas API Usuarios</h1>
+        <h1>Centro de administración</h1>
         {currentUser && (
           <div className="user-info">
             <span>Hola, {currentUser.nombre}</span>
@@ -163,4 +163,4 @@ function ApiTestApp() {
   );
 }
 
-export default ApiTestApp;
+export default CuentaUsuaraio;

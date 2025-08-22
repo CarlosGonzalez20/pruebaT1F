@@ -229,7 +229,7 @@ const AdminPanel = ({ user, authToken, apiBaseUrl, onBack, setApiResponse }) => 
               id="userId"
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
-              placeholder="507f1f77bcf86cd799439011"
+              placeholder="Selecciona un usuario..."
             />
           </div>
           
