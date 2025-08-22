@@ -140,17 +140,6 @@ function ApiTestApp() {
       <main className="app-main">
         {renderCurrentView()}
       </main>
-
-      <aside className="api-response-panel">
-        <h3>Respuesta de la API:</h3>
-        <div className="response-content">
-          {apiResponse ? (
-            <pre>{JSON.stringify(apiResponse, null, 2)}</pre>
-          ) : (
-            <p>Realiza una operación para ver los resultados aquí</p>
-          )}
-        </div>
-      </aside>
     </div>
   );
 }
