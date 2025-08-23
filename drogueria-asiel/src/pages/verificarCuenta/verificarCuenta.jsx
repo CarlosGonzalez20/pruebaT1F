@@ -11,7 +11,7 @@ const VerificarCuenta = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     // ✅ Usa la variable de entorno
-    const API_BASE_URL = import.meta.env.REACT_APP_API_URL || 'http://localhost:3000';
+    const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
     useEffect(() => {
         const verificarCuenta = async () => {
