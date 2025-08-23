@@ -14,14 +14,20 @@ const UserDashboard = ({
     nombre: user?.nombre || '', 
     email: user?.email || '' 
   });
+  const [originalEmail, setOriginalEmail] = useState(user?.email || '');
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Verificar si hay token y usuario
+    if (user?.email) {
+      setOriginalEmail(user.email);
+    }
+  }, [user]);
+
+  useEffect(() => {
     if (!authToken || !user) {
-      onLogout(); // Forzar logout si no hay credenciales
+      onLogout();
       return;
     }
 
@@ -34,18 +40,20 @@ const UserDashboard = ({
         });
         
         if (response.status === 401) {
-          // Token inválido o expirado
           onLogout();
           return;
         }
 
         const data = await response.json();
         setApiResponse(data);
-        if (data.success && data.data?.usuario) {
+        
+        // Solo actualizar si NO estamos editando
+        if (data.success && data.data?.usuario && !isEditingEmail) {
           setProfileData({ 
             nombre: data.data.usuario.nombre,
             email: data.data.usuario.email
           });
+          setOriginalEmail(data.data.usuario.email);
         }
       } catch (error) {
         setApiResponse({ error: error.message });
@@ -55,7 +63,7 @@ const UserDashboard = ({
     };
 
     fetchProfile();
-  }, [authToken, apiBaseUrl, setApiResponse, user, onLogout]);
+  }, [authToken, apiBaseUrl, setApiResponse, user, onLogout, isEditingEmail]);
 
   const handleBackToHome = () => navigate('/');
 
@@ -78,7 +86,13 @@ const UserDashboard = ({
           nombre: data.data.usuario.nombre,
           email: data.data.usuario.email
         });
+        setOriginalEmail(data.data.usuario.email);
         setIsEditingEmail(false);
+        
+        // Mostrar mensaje si cambió el email
+        if (profileData.email !== originalEmail) {
+          alert('✅ Perfil actualizado. Revisa tu nuevo email para verificar la dirección.');
+        }
       }
     } catch (error) {
       setApiResponse({ error: error.message });
@@ -101,6 +115,7 @@ const UserDashboard = ({
           nombre: data.data.usuario.nombre,
           email: data.data.usuario.email
         });
+        setOriginalEmail(data.data.usuario.email);
         setIsEditingEmail(false);
       }
     } catch (error) {
@@ -119,11 +134,14 @@ const UserDashboard = ({
   };
 
   const toggleEmailEdit = () => {
-    setIsEditingEmail(!isEditingEmail);
-    // Si cancelamos la edición, restauramos el email original
     if (isEditingEmail) {
-      setProfileData(prev => ({ ...prev, email: user.email }));
+      // Cancelar edición - restaurar el email original
+      setProfileData(prev => ({ 
+        ...prev, 
+        email: originalEmail 
+      }));
     }
+    setIsEditingEmail(!isEditingEmail);
   };
 
   return (
