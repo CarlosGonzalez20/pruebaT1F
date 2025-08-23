@@ -1,0 +1,148 @@
+Paso 1
+Importar el hook
+    import useNotification from 'depende la ruta donde se aplique/Hooks/useNotification/useNotification';
+
+Paso 2
+Obtener la función del hook
+    const { addNotification } = useNotification();
+
+Paso 3
+Usar la notificación donde se necesite
+    addNotification({
+        type: 'tipo',        // 'success', 'error', 'warning', 'info'
+        title: 'Título',     // Opcional
+        message: 'Mensaje',  // Requerido
+        duration: 8000       // Opcional (milisegundos)
+    });
+
+EJEMPLO DE USO (NO REAL)
+
+import React, { useState } from 'react';
+import useNotification from '../../../Hooks/useNotification/useNotification';
+
+const LoginForm = ({ onLoginSuccess, onRegisterClick, apiBaseUrl }) => {
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [isLoading, setIsLoading] = useState(false);
+  const { addNotification } = useNotification(); // ← Paso 2
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        addNotification({ // ← Paso 3
+          type: 'success',
+          title: '¡Bienvenido!',
+          message: 'Sesión iniciada correctamente'
+        });
+        onLoginSuccess(data.data.token, data.data.usuario);
+      } else {
+        addNotification({ // ← Paso 3
+          type: 'error',
+          title: 'Error de inicio de sesión',
+          message: data.message || 'Credenciales incorrectas'
+        });
+      }
+    } catch (error) {
+      addNotification({ // ← Paso 3
+        type: 'error',
+        title: 'Error de conexión',
+        message: 'No se pudo conectar con el servidor'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    // ... formulario de login
+  );
+};
+
+export default LoginForm;
+
+EJEMPLO 2
+
+import React, { useState } from 'react';
+import useNotification from '../../../Hooks/useNotification/useNotification';
+
+const UserProfile = ({ user, apiBaseUrl, token }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const { addNotification } = useNotification(); // ← Paso 2
+
+  const handleUpdateProfile = async (updatedData) => {
+    try {
+      const response = await fetch(`${apiBaseUrl}/usuarios/perfil`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(updatedData)
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        addNotification({ // ← Paso 3
+          type: 'success',
+          message: 'Perfil actualizado correctamente'
+        });
+        setIsEditing(false);
+      } else {
+        addNotification({ // ← Paso 3
+          type: 'error',
+          message: data.message || 'Error al actualizar perfil'
+        });
+      }
+    } catch (error) {
+      addNotification({ // ← Paso 3
+        type: 'error',
+        message: 'Error de conexión al actualizar perfil'
+      });
+    }
+  };
+
+  return (
+    // ... tu componente de perfil
+  );
+};
+
+export default UserProfile;
+
+EJEMPLO 3
+
+import React from 'react';
+import useNotification from '../../../Hooks/useNotification/useNotification';
+
+const ProductCard = ({ product, onAddToCart }) => {
+  const { addNotification } = useNotification(); // ← Paso 2
+
+  const handleAddToCart = () => {
+    onAddToCart(product);
+    addNotification({ // ← Paso 3
+      type: 'success',
+      message: `${product.name} agregado al carrito`,
+      duration: 3000 // 3 segundos para notificaciones rápidas
+    });
+  };
+
+  return (
+    <div className="product-card">
+      <h3>{product.name}</h3>
+      <p>{product.price}</p>
+      <button onClick={handleAddToCart}>Agregar al carrito</button>
+    </div>
+  );
+};
+
+export default ProductCard;

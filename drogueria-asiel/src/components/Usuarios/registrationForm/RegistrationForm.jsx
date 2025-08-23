@@ -10,9 +10,11 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl 
     confirmPassword: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isResending, setIsResending] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState('');
   const [passwordStrength, setPasswordStrength] = useState('empty');
   
-  // Usar el hook de notificaciones
   const { addNotification } = useNotification();
   
   useEffect(() => {
@@ -81,6 +83,8 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl 
       const data = await response.json();
       
       if (data.success) {
+        setRegistrationSuccess(true);
+        setRegisteredEmail(formData.email);
         addNotification({
           type: 'success',
           title: '¡Registro exitoso!',
@@ -103,6 +107,46 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl 
       setIsLoading(false);
     }
   };
+
+  const handleResendVerification = async () => {
+    if (!registeredEmail) return;
+    
+    setIsResending(true);
+    
+    try {
+      const response = await fetch(`${apiBaseUrl}/reenviar-verificacion`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: registeredEmail })
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        addNotification({
+          type: 'success',
+          title: 'Correo reenviado',
+          message: data.message || 'Se ha reenviado el correo de verificación'
+        });
+      } else {
+        addNotification({
+          type: 'error',
+          title: 'Error',
+          message: data.message || 'Error al reenviar el correo'
+        });
+      }
+    } catch (error) {
+      addNotification({
+        type: 'error',
+        title: 'Error de conexión',
+        message: 'No se pudo conectar con el servidor. Intenta nuevamente.'
+      });
+    } finally {
+      setIsResending(false);
+    }
+  };
   
   return (
     <div className="registration-form-container">
@@ -111,90 +155,113 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl 
         <h2>Crear Cuenta</h2>
       </div>
       
-      <form onSubmit={handleSubmit} className="auth-form">
-        <div className="form-group">
-          <label htmlFor="nombre">Nombre Completo</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleInputChange}
-            required
-            placeholder="Tu nombre completo"
-            disabled={isLoading}
-          />
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="email">Correo Electrónico</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-            placeholder="tu@email.com"
-            autoComplete='email'
-            disabled={isLoading}
-          />
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
-          <div className="password-input-container">
+      {!registrationSuccess ? (
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="nombre">Nombre Completo</label>
             <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
+              type="text"
+              id="nombre"
+              name="nombre"
+              value={formData.nombre}
               onChange={handleInputChange}
               required
-              placeholder="Mínimo 6 caracteres"
-              minLength="6"
-              autoComplete='new-password'
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-              title="La contraseña debe contener al menos un número, una letra minúscula, una letra mayúscula y tener al menos 6 caracteres."
+              placeholder="Tu nombre completo"
               disabled={isLoading}
             />
-            {/* ✅ Indicador de Emoción */}
-            <span className="password-emoji">
-              {passwordStrength === 'empty' && '😑'}
-              {passwordStrength === 'weak' && '😒'}
-              {passwordStrength === 'medium' && '🤔'}
-              {passwordStrength === 'strong' && '🥲'}
-            </span>
           </div>
-          <small className="help-text">
-            La contraseña debe tener al menos 6 caracteres, incluir una mayúscula, una minúscula y un número.
-          </small>
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirmar Contraseña</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleInputChange}
-            required
-            placeholder="Repite tu contraseña"
-            minLength="6"
-            autoComplete='new-password'
+          
+          <div className="form-group">
+            <label htmlFor="email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              placeholder="tu@email.com"
+              autoComplete='email'
+              disabled={isLoading}
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="password">Contraseña</label>
+            <div className="password-input-container">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+                placeholder="Mínimo 6 caracteres"
+                minLength="6"
+                autoComplete='new-password'
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                title="La contraseña debe contener al menos un número, una letra minúscula, una letra mayúscula y tener al menos 6 caracteres."
+                disabled={isLoading}
+              />
+              <span className="password-emoji">
+                {passwordStrength === 'empty' && '😑'}
+                {passwordStrength === 'weak' && '😒'}
+                {passwordStrength === 'medium' && '🤔'}
+                {passwordStrength === 'strong' && '🥲'}
+              </span>
+            </div>
+            <small className="help-text">
+              La contraseña debe tener al menos 6 caracteres, incluir una mayúscula, una minúscula y un número.
+            </small>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              required
+              placeholder="Repite tu contraseña"
+              minLength="6"
+              autoComplete='new-password'
+              disabled={isLoading}
+            />
+          </div>
+          
+          <button 
+            type="submit" 
+            className="submit-btn"
             disabled={isLoading}
-          />
+          >
+            {isLoading ? 'Creando cuenta...' : 'Crear Cuenta'}
+          </button>
+        </form>
+      ) : (
+        <div className="verification-message">
+          <div className="success-icon">✅</div>
+          <h3>¡Registro Completado!</h3>
+          <p>Hemos enviado un correo de verificación a <strong>{registeredEmail}</strong>.</p>
+          <p>Por favor revisa tu bandeja de entrada y haz clic en el enlace para verificar tu cuenta.</p>
+          
+          <div className="resend-section">
+            <p>¿No recibiste el correo electrónico?</p>
+            <button 
+              onClick={handleResendVerification}
+              className="resend-btn"
+              disabled={isResending}
+            >
+              {isResending ? 'Reenviando...' : 'Reenviar correo de verificación'}
+            </button>
+          </div>
+          
+          <p className="check-spam">
+            💡 <strong>Consejo:</strong> Revisa tu carpeta de spam o correo no deseado si no encuentras el email.
+          </p>
         </div>
-        
-        <button 
-          type="submit" 
-          className="submit-btn"
-          disabled={isLoading}
-        >
-          {isLoading ? 'Creando cuenta...' : 'Crear Cuenta'}
-        </button>
-      </form>
+      )}
       
       <div className="auth-footer">
         <p>¿Ya tienes una cuenta? 

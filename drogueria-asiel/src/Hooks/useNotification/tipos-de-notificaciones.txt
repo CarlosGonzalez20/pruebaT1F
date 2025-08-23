@@ -1,0 +1,91 @@
+// Éxito (verde)
+addNotification({
+  type: 'success',
+  title: 'Operación exitosa',
+  message: 'Todo salió perfectamente'
+});
+
+// Error (rojo)
+addNotification({
+  type: 'error', 
+  title: 'Algo salió mal',
+  message: 'Hubo un problema con la operación'
+});
+
+// Advertencia (naranja/amarillo)
+addNotification({
+  type: 'warning',
+  title: 'Atención',
+  message: 'Esto podría causar problemas'
+});
+
+// Información (azul)
+addNotification({
+  type: 'info',
+  title: 'Información',
+  message: 'Esto es solo para tu conocimiento'
+});
+
+
+EJEMPLO DE USO DE MENSAJES DE LA API
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  if (formData.password !== formData.confirmPassword) {
+    addNotification({
+      type: 'error',
+      title: 'Error de validación',
+      message: 'Las contraseñas no coinciden' // ← Mensaje hardcodeado para validación frontend
+    });
+    return;
+  }
+  
+  setIsLoading(true);
+  
+  try {
+    const submitData = {
+      ...formData,
+      rol: 'usuario'
+    };
+    delete submitData.confirmPassword;
+    
+    const response = await fetch(`${apiBaseUrl}/registro`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(submitData)
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      addNotification({
+        type: 'success',
+        title: '¡Registro exitoso!',
+        message: data.message // ← Mensaje ESPECÍFICO de la API
+      });
+      
+      // Redirige al login después de 3 segundos
+      setTimeout(() => {
+        onLoginClick();
+      }, 3000);
+      
+    } else {
+      addNotification({
+        type: 'error',
+        title: 'Error en el registro',
+        message: data.message // ← Mensaje ESPECÍFICO de error de la API
+      });
+    }
+  } catch (error) {
+    addNotification({
+      type: 'error',
+      title: 'Error de conexión',
+      message: 'No se pudo conectar con el servidor. Intenta nuevamente.'
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};

@@ -40,4 +40,64 @@
   color: #666;
 }
 
+.verification-message {
+  text-align: center;
+  padding: 20px;
+}
+
+.success-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  color: #10b981;
+}
+
+.verification-message h3 {
+  color: #059669;
+  margin-bottom: 15px;
+}
+
+.verification-message p {
+  margin-bottom: 15px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.resend-section {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid #3b82f6;
+}
+
+.resend-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.resend-btn:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.resend-btn:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.check-spam {
+  font-size: 14px;
+  color: #6b7280;
+  background-color: #fffbeb;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid #f59e0b;
+}
+
 /* El resto de estilos son iguales a LoginForm.css */
