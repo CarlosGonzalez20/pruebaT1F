@@ -12,15 +12,29 @@ const AdminPanel = lazy(() => import('../../components/Usuarios/adminPanel/Admin
 
 function CuentaUsuaraio() {
   const [currentView, setCurrentView] = useState('login');
+
+  // SOLUCIÓN DEFINITIVA - Configuración a prueba de fallos
   let API_BASE_URL;
-  try {
-    API_BASE_URL = process.env.REACT_APP_API_URL;
-  } catch (error) {
-    API_BASE_URL = 'http://localhost:3000'; // Valor por defecto para desarrollo
+  
+  // 1. Primero intenta con las variables de entorno de Vite (si usas Vite)
+  if (typeof import.meta.env !== 'undefined' && import.meta.env.VITE_API_URL) {
+    API_BASE_URL = import.meta.env.VITE_API_URL;
   }
-  console.log("✅ Valor de API_BASE_URL:", API_BASE_URL);
+  // 2. Luego intenta con las variables de entorno de CRA (si usas Create React App)
+  else if (typeof process.env !== 'undefined' && process.env.REACT_APP_API_URL) {
+    API_BASE_URL = process.env.REACT_APP_API_URL;
+  }
+  // 3. Si estamos en producción (en el dominio de Vercel) y las variables fallaron, usamos el valor hardcodeado
+  else if (window.location.hostname === 'drogueria-asielsa.vercel.app') {
+    API_BASE_URL = 'https://dasa-api-xrec.onrender.com'; // ✅ URL hardcodeada para PRODUCCIÓN
+  }
+  // 4. Por defecto, para desarrollo local
+  else {
+    API_BASE_URL = 'http://localhost:3000';
+  }
+console.log("✅ Valor de API_BASE_URL:", API_BASE_URL);
 console.log("✅ Variables de entorno (process.env):", process.env);
-  const [apiBaseUrl] = useState(`${API_BASE_URL}/usuarios`);
+  const apiBaseUrl = `${API_BASE_URL}/usuarios`; // Construye la URL final
   const [apiResponse, setApiResponse] = useState(null);
   const navigate = useNavigate();
   
