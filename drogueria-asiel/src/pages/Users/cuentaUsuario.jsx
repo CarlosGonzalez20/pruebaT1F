@@ -14,7 +14,7 @@ function CuentaUsuaraio() {
   const [currentView, setCurrentView] = useState('login');
   let API_BASE_URL;
   try {
-    API_BASE_URL = process.env.API_URL;
+    API_BASE_URL = process.env.REACT_APP_API_URL;
   } catch (error) {
     API_BASE_URL = 'http://localhost:3000'; // Valor por defecto para desarrollo
   }
