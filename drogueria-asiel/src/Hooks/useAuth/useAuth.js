@@ -38,8 +38,6 @@ export const useAuth = () => {
     setCurrentUser(completeUserData);
     localStorage.setItem('authToken', token);
     localStorage.setItem('currentUser', JSON.stringify(completeUserData));
-    
-    console.log('✅ Login exitoso - User:', completeUserData);
   };
 
   const logout = () => {
