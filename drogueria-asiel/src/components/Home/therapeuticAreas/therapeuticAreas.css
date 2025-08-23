@@ -1,41 +1,19 @@
-/*temporal*/
-
-.color-buttons {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.color-buttons button {
-  background-color: white;
-  color: #333;
-  border: 1px solid #ccc;
-  padding: 8px 16px;
-  margin: 0 5px;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.color-buttons button:hover {
-  background-color: #f0f0f0;
-}
-/*fin temporal*/
-
 .therapeutic-areas-container {
     border-radius: 25px;
     background-color: var(--background-color-therapeutic);
     padding: 20px;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 10px var(--box-shadow-color);
+    box-shadow: 0 4px 10px var(--box-shadow-color-therapeutic);
     width: 94%;
     max-width: 1200px;
     margin: 15px auto;
+    user-select: none; /* Prevenir selección de texto */
 }
 
 .therapeutic-areas-container h2 {
     text-align: center;
     margin-bottom: 30px;
+    color: var(--text-color-therapeutic);
 }
 
 .areas-content {
@@ -59,6 +37,7 @@
     background-color: rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
+    color: var(--text-color-therapeutic);
 }
 
 .areas-list li:hover {
@@ -69,12 +48,19 @@
     background-color: rgba(255, 255, 255, 0.3);
 }
 
+.area-name {
+    user-select: none; /* Prevenir selección de texto */
+    pointer-events: none; /* Permitir que el clic pase al elemento li */
+}
+
 .area-description {
     margin-top: 10px;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     font-size: 0.9em;
+    color: var(--text-color-therapeutic);
+    user-select: none; /* Prevenir selección de texto */
 }
 
 .areas-gallery {
@@ -139,6 +125,14 @@
     border-radius: 10px;
 }
 
+.click-hint {
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--text-color-therapeutic);
+}
+
 @media (max-width: 768px) {
     .therapeutic-areas-container {
         width: 85%;
@@ -199,10 +193,5 @@
         height: auto;
         max-height: 80px;
         object-fit: contain;
-    }
-    
-    .click-hint {
-        text-align: center;
-        font-size: 0.9em;
     }
 }
