@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'; // ✅ Añade useEffect
+import React, { useState, useEffect } from 'react';
 import './RegistrationForm.css';
+import useNotification from '../../../Hooks/useNotification/useNotification';
 
-const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl, setApiResponse }) => {
+const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl }) => {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -9,10 +10,11 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl,
     confirmPassword: ''
   });
   const [isLoading, setIsLoading] = useState(false);
-  // ✅ Estado nuevo para la fuerza de la contraseña
-  const [passwordStrength, setPasswordStrength] = useState('empty'); // 'empty', 'weak', 'medium', 'strong'
+  const [passwordStrength, setPasswordStrength] = useState('empty');
   
-  // ✅ Efecto que se ejecuta cuando cambia formData.password
+  // Usar el hook de notificaciones
+  const { addNotification } = useNotification();
+  
   useEffect(() => {
     const calculateStrength = () => {
       const pass = formData.password;
@@ -23,7 +25,6 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl,
         return 'weak';
       }
 
-      // Verifica si tiene número, minúscula y mayúscula
       const hasNumber = /(?=.*\d)/.test(pass);
       const hasLower = /(?=.*[a-z])/.test(pass);
       const hasUpper = /(?=.*[A-Z])/.test(pass);
@@ -38,7 +39,7 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl,
     };
 
     setPasswordStrength(calculateStrength());
-  }, [formData.password]); // Se ejecuta cuando formData.password cambia
+  }, [formData.password]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,11 +53,15 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl,
     e.preventDefault();
     
     if (formData.password !== formData.confirmPassword) {
-      setApiResponse({ error: 'Las contraseñas no coinciden' });
+      addNotification({
+        type: 'error',
+        title: 'Error de validación',
+        message: 'Las contraseñas no coinciden'
+      });
       return;
     }
     
-    setIsLoading(true); // Usar estado local
+    setIsLoading(true);
     
     try {
       const submitData = {
@@ -74,31 +79,28 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl,
       });
       
       const data = await response.json();
-      setApiResponse(data);
       
       if (data.success) {
-        const loginResponse = await fetch(`${apiBaseUrl}/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password
-          })
+        addNotification({
+          type: 'success',
+          title: '¡Registro exitoso!',
+          message: data.message || 'Usuario registrado correctamente'
         });
-        
-        const loginData = await loginResponse.json();
-        setApiResponse(loginData);
-        
-        if (loginData.success) {
-          onRegisterSuccess(loginData.data.token, loginData.data.usuario);
-        }
+      } else {
+        addNotification({
+          type: 'error',
+          title: 'Error en el registro',
+          message: data.message || 'Error al registrar usuario'
+        });
       }
     } catch (error) {
-      setApiResponse({ error: error.message });
+      addNotification({
+        type: 'error',
+        title: 'Error de conexión',
+        message: 'No se pudo conectar con el servidor. Intenta nuevamente.'
+      });
     } finally {
-      setIsLoading(false); // Usar estado local
+      setIsLoading(false);
     }
   };
   
