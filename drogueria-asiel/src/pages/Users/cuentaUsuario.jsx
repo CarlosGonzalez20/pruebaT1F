@@ -18,6 +18,8 @@ function CuentaUsuaraio() {
   } catch (error) {
     API_BASE_URL = 'http://localhost:3000'; // Valor por defecto para desarrollo
   }
+  console.log("✅ Valor de API_BASE_URL:", API_BASE_URL);
+console.log("✅ Variables de entorno (process.env):", process.env);
   const [apiBaseUrl] = useState(`${API_BASE_URL}/usuarios`);
   const [apiResponse, setApiResponse] = useState(null);
   const navigate = useNavigate();
