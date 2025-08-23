@@ -20,15 +20,6 @@ function CuentaUsuaraio() {
   if (typeof import.meta.env !== 'undefined' && import.meta.env.VITE_API_URL) {
     API_BASE_URL = import.meta.env.VITE_API_URL;
   }
-  // 2. Luego intenta con las variables de entorno de CRA (si usas Create React App)
-  else if (typeof process.env !== 'undefined' && process.env.REACT_APP_API_URL) {
-    API_BASE_URL = process.env.REACT_APP_API_URL;
-  }
-  // 3. Si estamos en producción (en el dominio de Vercel) y las variables fallaron, usamos el valor hardcodeado
-  else if (window.location.hostname === 'drogueria-asielsa.vercel.app') {
-    API_BASE_URL = 'https://dasa-api-xrec.onrender.com'; // ✅ URL hardcodeada para PRODUCCIÓN
-  }
-  // 4. Por defecto, para desarrollo local
   else {
     API_BASE_URL = 'http://localhost:3000';
   }
