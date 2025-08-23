@@ -1,54 +1,103 @@
 import React, { useState } from 'react';
 import './LoginForm.css';
+import useNotification from '../../../Hooks/useNotification/useNotification';
 
-const LoginForm = ({ onBack, onLoginSuccess, onRegisterClick, apiBaseUrl, setApiResponse }) => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-  const [isLoading, setIsLoading] = useState(false); // Estado local
-  
+const LoginForm = ({ onLoginSuccess, onRegisterClick, apiBaseUrl }) => {
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isRecovering, setIsRecovering] = useState(false);
+  const [recoveryEmail, setRecoveryEmail] = useState('');
+  const { addNotification } = useNotification();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // Usar estado local
-    
+    setIsLoading(true);
+
     try {
       const response = await fetch(`${apiBaseUrl}/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      
+
       const data = await response.json();
-      setApiResponse(data);
-      
+
       if (data.success) {
+        addNotification({
+          type: 'success',
+          message: data.message || 'Sesión iniciada correctamente'
+        });
         onLoginSuccess(data.data.token, data.data.usuario);
+      } else {
+        addNotification({
+          type: 'error',
+          message: data.message || 'Credenciales incorrectas'
+        });
       }
     } catch (error) {
-      setApiResponse({ error: error.message });
+      addNotification({
+        type: 'error',
+        message: 'Error de conexión con el servidor'
+      });
     } finally {
-      setIsLoading(false); // Usar estado local
+      setIsLoading(false);
     }
   };
-  
+
+  const handleRecoverPassword = async () => {
+    if (!recoveryEmail) {
+      addNotification({
+        type: 'error',
+        message: 'Por favor ingresa tu correo electrónico'
+      });
+      return;
+    }
+
+    setIsRecovering(true);
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/recuperar-password`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: recoveryEmail })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        addNotification({
+          type: 'success',
+          message: data.message || 'Se ha enviado una nueva contraseña a tu correo'
+        });
+        setRecoveryEmail('');
+      } else {
+        addNotification({
+          type: 'error',
+          message: data.message || 'Error al recuperar la contraseña'
+        });
+      }
+    } catch (error) {
+      addNotification({
+        type: 'error',
+        message: 'Error de conexión con el servidor'
+      });
+    } finally {
+      setIsRecovering(false);
+    }
+  };
+
   return (
     <div className="login-form-container">
       <div className="form-header">
-        <button onClick={onBack} className="back-btn">← Volver</button>
+        <button onClick={() => window.history.back()} className="back-btn">← Volver</button>
         <h2>Iniciar Sesión</h2>
       </div>
-      
+
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="form-group">
           <label htmlFor="email">Correo Electrónico</label>
@@ -60,11 +109,10 @@ const LoginForm = ({ onBack, onLoginSuccess, onRegisterClick, apiBaseUrl, setApi
             onChange={handleInputChange}
             required
             placeholder="tu@email.com"
-            autoComplete="email"
             disabled={isLoading}
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="password">Contraseña</label>
           <input
@@ -75,27 +123,42 @@ const LoginForm = ({ onBack, onLoginSuccess, onRegisterClick, apiBaseUrl, setApi
             onChange={handleInputChange}
             required
             placeholder="Tu contraseña"
-            autoComplete="current-password"
             disabled={isLoading}
           />
         </div>
-        
-        <button 
-          type="submit" 
-          className="submit-btn"
-          disabled={isLoading}
-        >
+
+        <button type="submit" className="submit-btn" disabled={isLoading}>
           {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
         </button>
       </form>
-      
+
+      {/* Sección de recuperación de contraseña */}
+      <div className="recovery-section">
+        <p>¿Olvidaste tu contraseña?</p>
+        <div className="recovery-input">
+          <input
+            type="email"
+            placeholder="Ingresa tu correo electrónico"
+            value={recoveryEmail}
+            onChange={(e) => setRecoveryEmail(e.target.value)}
+            disabled={isRecovering}
+          />
+          <button 
+            onClick={handleRecoverPassword}
+            className="recovery-btn"
+            disabled={isRecovering}
+          >
+            {isRecovering ? 'Enviando...' : 'Recuperar Contraseña'}
+          </button>
+        </div>
+        <small className="recovery-note">
+          Te enviaremos una contraseña temporal. Por seguridad, cámbiala después de iniciar sesión.
+        </small>
+      </div>
+
       <div className="auth-footer">
         <p>¿No tienes una cuenta? 
-          <button 
-            onClick={onRegisterClick} 
-            className="link-btn"
-            disabled={isLoading}
-          >
+          <button onClick={onRegisterClick} className="link-btn">
             Regístrate aquí
           </button>
         </p>
