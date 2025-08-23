@@ -1,6 +1,8 @@
 .user-dashboard {
   width: 100%;
   max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .dashboard-header {
@@ -14,7 +16,7 @@
 
 .dashboard-header h2 {
   margin: 0;
-  color: #e2e8f0;
+  color: white;
 }
 
 .home-btn {
@@ -31,11 +33,6 @@
 
 .home-btn:hover {
   background: #38a169;
-}
-
-.user-name {
-  font-weight: 600;
-  color: #4a5568;
 }
 
 .dashboard-content {
@@ -149,10 +146,63 @@
 .action-btn:disabled {
   background: #cbd5e0;
   cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .action-btn:disabled:hover {
   background: #cbd5e0;
+}
+
+/* Sección de cambio de contraseña */
+.password-change-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.password-change-section h4 {
+  margin: 0 0 15px 0;
+  color: #2d3748;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.password-form .form-group {
+  margin-bottom: 0;
+}
+
+/* Mejoras para los formularios */
+.profile-form,
+.password-form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Estados de carga */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Estilo para el botón de cancelar cuando está editando email */
+.profile-form .action-btn.secondary {
+  background: #e53e3e;
+  color: white;
+}
+
+.profile-form .action-btn.secondary:hover {
+  background: #c53030;
+}
+
+/* Espaciado entre botones en el formulario de perfil */
+.profile-form button {
+  margin-top: 10px;
 }
 
 @media (max-width: 968px) {
@@ -175,5 +225,14 @@
   .home-btn {
     align-self: stretch;
     text-align: center;
+  }
+  
+  .action-buttons {
+    gap: 10px;
+  }
+  
+  .action-btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
   }
 }
