@@ -9,6 +9,7 @@ const VerificarCuenta = () => {
     const [mensaje, setMensaje] = useState('Verificando tu cuenta...');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [cuentaVerificada, setCuentaVerificada] = useState(false);
 
     // ✅ Usa la variable de entorno
     const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -32,16 +33,12 @@ const VerificarCuenta = () => {
 
                 if (data.success) {
                     setMensaje(data.message || '¡Cuenta verificada exitosamente!');
-                    setTimeout(() => {
-                        navigate('/usuario');
-                    }, 3000);
+                    setCuentaVerificada(true);
                 } else {
                     // ✅ Si el error es que el token ya fue usado, pero la verificación fue exitosa
                     if (data.message.includes('ya fue utilizado') || data.message.includes('ya estaba verificado')) {
                         setMensaje('¡Cuenta ya verificada anteriormente!');
-                        setTimeout(() => {
-                            navigate('/usuario');
-                        }, 3000);
+                        setCuentaVerificada(true);
                     } else if (data.message === 'Token expirado') {
                         setError('El enlace de verificación ha expirado. Por favor solicita uno nuevo.');
                     } else {
@@ -82,7 +79,25 @@ const VerificarCuenta = () => {
                         <div className="success-icon">✅</div>
                         <h2>¡Verificación Exitosa!</h2>
                         <p className="success-message">{mensaje}</p>
-                        <p>Serás redirigido automáticamente al login...</p>
+                        
+                        {cuentaVerificada ? (
+                            <>
+                                <p className="info-message">
+                                    Ya puedes cerrar esta ventana y volver a la aplicación.
+                                </p>
+                                <p className="secondary-message">
+                                    Tu cuenta ha sido verificada correctamente.
+                                </p>
+                                <button 
+                                    onClick={() => navigate('/usuario')}
+                                    className="btn-secondary"
+                                >
+                                    Ir al Login
+                                </button>
+                            </>
+                        ) : (
+                            <p>Procesando verificación...</p>
+                        )}
                     </>
                 )}
             </div>
