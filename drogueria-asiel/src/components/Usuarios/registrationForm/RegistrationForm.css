@@ -7,4 +7,37 @@
   max-width: 500px;
 }
 
+/* Contenedor para el input y el emoji */
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+/* El emoji se posiciona absolutamente dentro del contenedor */
+.password-emoji {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  pointer-events: none; /* Para que no interfiera con el clic en el input */
+  background: white;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+/* Ajusta el padding del input para que el texto no quede detrás del emoji */
+#password {
+  padding-right: 40px; /* Espacio para el emoji */
+  width: 100%;
+}
+
+/* Estilos opcionales para el texto de ayuda */
+.help-text {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
 /* El resto de estilos son iguales a LoginForm.css */

@@ -60,6 +60,7 @@ const LoginForm = ({ onBack, onLoginSuccess, onRegisterClick, apiBaseUrl, setApi
             onChange={handleInputChange}
             required
             placeholder="tu@email.com"
+            autoComplete="email"
             disabled={isLoading}
           />
         </div>
@@ -74,6 +75,7 @@ const LoginForm = ({ onBack, onLoginSuccess, onRegisterClick, apiBaseUrl, setApi
             onChange={handleInputChange}
             required
             placeholder="Tu contraseña"
+            autoComplete="current-password"
             disabled={isLoading}
           />
         </div>

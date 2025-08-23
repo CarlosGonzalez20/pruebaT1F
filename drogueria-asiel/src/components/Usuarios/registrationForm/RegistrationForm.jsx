@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // ✅ Añade useEffect
 import './RegistrationForm.css';
 
 const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl, setApiResponse }) => {
@@ -8,8 +8,38 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl,
     password: '',
     confirmPassword: ''
   });
-  const [isLoading, setIsLoading] = useState(false); // Estado local
+  const [isLoading, setIsLoading] = useState(false);
+  // ✅ Estado nuevo para la fuerza de la contraseña
+  const [passwordStrength, setPasswordStrength] = useState('empty'); // 'empty', 'weak', 'medium', 'strong'
   
+  // ✅ Efecto que se ejecuta cuando cambia formData.password
+  useEffect(() => {
+    const calculateStrength = () => {
+      const pass = formData.password;
+      if (pass.length === 0) {
+        return 'empty';
+      }
+      if (pass.length < 6) {
+        return 'weak';
+      }
+
+      // Verifica si tiene número, minúscula y mayúscula
+      const hasNumber = /(?=.*\d)/.test(pass);
+      const hasLower = /(?=.*[a-z])/.test(pass);
+      const hasUpper = /(?=.*[A-Z])/.test(pass);
+
+      if (hasNumber && hasLower && hasUpper) {
+        return 'strong';
+      } else if (pass.length >= 6) {
+        return 'medium';
+      } else {
+        return 'weak';
+      }
+    };
+
+    setPasswordStrength(calculateStrength());
+  }, [formData.password]); // Se ejecuta cuando formData.password cambia
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -104,23 +134,39 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl,
             onChange={handleInputChange}
             required
             placeholder="tu@email.com"
+            autoComplete='email'
             disabled={isLoading}
           />
         </div>
         
         <div className="form-group">
           <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-            placeholder="Mínimo 6 caracteres"
-            minLength="6"
-            disabled={isLoading}
-          />
+          <div className="password-input-container">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+              placeholder="Mínimo 6 caracteres"
+              minLength="6"
+              autoComplete='new-password'
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+              title="La contraseña debe contener al menos un número, una letra minúscula, una letra mayúscula y tener al menos 6 caracteres."
+              disabled={isLoading}
+            />
+            {/* ✅ Indicador de Emoción */}
+            <span className="password-emoji">
+              {passwordStrength === 'empty' && '😑'}
+              {passwordStrength === 'weak' && '😒'}
+              {passwordStrength === 'medium' && '🤔'}
+              {passwordStrength === 'strong' && '🥲'}
+            </span>
+          </div>
+          <small className="help-text">
+            La contraseña debe tener al menos 6 caracteres, incluir una mayúscula, una minúscula y un número.
+          </small>
         </div>
         
         <div className="form-group">
@@ -134,6 +180,7 @@ const RegistrationForm = ({ onBack, onLoginClick, onRegisterSuccess, apiBaseUrl,
             required
             placeholder="Repite tu contraseña"
             minLength="6"
+            autoComplete='new-password'
             disabled={isLoading}
           />
         </div>
