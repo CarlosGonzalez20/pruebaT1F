@@ -15,6 +15,7 @@ const VerificarCuenta = () => {
 
     useEffect(() => {
         const verificarCuenta = async () => {
+            console.log("cargada la página verificarCuenta");
             try {
                 const token = searchParams.get('token');
                 
@@ -26,6 +27,8 @@ const VerificarCuenta = () => {
 
                 // ✅ Usa la variable de entorno
                 const response = await fetch(`${API_BASE_URL}/usuarios/verificar/${token}`);
+                console.log("✅ Valor de API_BASE_URL:", API_BASE_URL);
+console.log("✅ Variables de entorno (process.env):", process.env);
                 const data = await response.json();
 
                 console.log('🔍 Respuesta del backend:', data);
