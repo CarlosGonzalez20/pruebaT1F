@@ -236,3 +236,45 @@
     font-size: 0.9rem;
   }
 }
+
+/* ESTILOS PARA BANNER DE FUNCIONALIDADES - INICIO (FÁCIL DE ELIMINAR) */
+.features-development-banner {
+  background: linear-gradient(135deg, #4fd1c5 0%, #319795 100%);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+  color: black;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.features-development-banner h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.features-development-banner p {
+  margin: 0 0 15px 0;
+  line-height: 1.5;
+}
+
+.features-development-banner ul {
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+}
+
+.features-development-banner li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.development-timeline {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-top: 15px !important;
+  font-size: 0.95rem;
+}
+/* ESTILOS PARA BANNER DE FUNCIONALIDADES - FIN */

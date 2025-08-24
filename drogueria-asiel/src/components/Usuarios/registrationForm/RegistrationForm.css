@@ -101,3 +101,42 @@
 }
 
 /* El resto de estilos son iguales a LoginForm.css */
+
+/* ESTILOS PARA BANNER DE DESARROLLO - INICIO (FÁCIL DE ELIMINAR) */
+.development-banner {
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  border: 2px dashed #ff5722;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+.development-banner h3 {
+  margin: 0 0 12px 0;
+  color: #7b2c00;
+  font-size: 1.4rem;
+}
+
+.development-banner p {
+  margin: 0;
+  color: #5a1f00;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.launch-date-banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: white;
+}
+
+.launch-date-banner p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+/* ESTILOS PARA BANNER DE DESARROLLO - FIN */

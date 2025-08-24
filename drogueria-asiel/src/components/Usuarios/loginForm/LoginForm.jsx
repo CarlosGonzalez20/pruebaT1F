@@ -93,6 +93,21 @@ const LoginForm = ({ onLoginSuccess, onRegisterClick, apiBaseUrl }) => {
 
   return (
     <div className="login-form-container">
+
+      {/* BANNER DE DESARROLLO - INICIO (FÁCIL DE ELIMINAR) */}
+      <div className="development-banner">
+        <h3>🚧 Sitio en Desarrollo 🚧</h3>
+        <p>
+          ¡Gracias por visitarnos! Estamos trabajando en mejorar tu experiencia. 
+          Si te registras, tus datos se migrarán al sistema final cuando esté terminado.
+          Actualmente solo están disponibles las funciones de usuario básicas.
+        </p>
+      </div>
+      <div className="launch-date-banner">
+        <p>🎉 <strong>Lanzamiento oficial:</strong> 1 de octubre del presente año 🎉</p>
+      </div>
+      {/* BANNER DE DESARROLLO - FIN */}
+
       <div className="form-header">
         <button onClick={() => window.history.back()} className="back-btn">← Volver</button>
         <h2>Iniciar Sesión</h2>

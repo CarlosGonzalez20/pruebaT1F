@@ -1,13 +1,15 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
+import Loader from './components/loader/loader';
 import AuthCheck from './components/authCheck/authCheck';
+import FeedbackBubble from './components/feedbackBubble/feedbackBubble';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Loader from './components/loader/loader';
 
 const Home = lazy(() => import('./pages/home/home'));
 const Usuarios = lazy(() => import('./pages/Users/cuentaUsuario'));
 const VerificarCuenta = lazy(() => import('./pages/verificarCuenta/verificarCuenta'));
 const Error404 = lazy(() => import('./pages/notFound/notFound'));
+const Desarrollo = lazy(() => import('./pages/enDesarrollo/enDesarrollo'));
 
 function App() {
   const [showLoader, setShowLoader] = useState(true);
@@ -28,8 +30,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/usuario" element={<Usuarios />} />
           <Route path="/verificar-cuenta" element={<VerificarCuenta />} />
+          <Route path="/en-desarrollo" element={<Desarrollo />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
+        <FeedbackBubble />
       </AuthCheck>
     </Suspense>
   );

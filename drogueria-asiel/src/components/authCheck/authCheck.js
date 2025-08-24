@@ -1,29 +1,34 @@
-// components/AuthCheck.js
 import { useEffect } from 'react';
 import { useAuth } from '../../Hooks/useAuth/useAuth';
 
 const AuthCheck = ({ children }) => {
-  const { authToken, currentUser, logout } = useAuth();
+  const { authToken, logout } = useAuth();
 
   useEffect(() => {
-    // Verificar periodicamente si el token sigue siendo válido
     const checkAuth = async () => {
       if (authToken) {
         try {
-          const response = await fetch('http://localhost:3000/usuarios/verify', {
+          const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+          
+          const response = await fetch(`${API_BASE_URL}/usuarios/verify`, {
             headers: { 'Authorization': `Bearer ${authToken}` }
           });
           
-          if (!response.ok) {
-            logout(); // Token inválido
+          const data = await response.json();
+          
+          if (!response.ok || !data.success) {
+            console.log('Token inválido o expirado:', data.message);
+            logout();
           }
         } catch (error) {
-          console.error('Error verificando autenticación:', error);
+          console.error('Error de red verificando autenticación:', error);
         }
       }
     };
 
-    const interval = setInterval(checkAuth, 300000); // Verificar cada 5 minutos
+    checkAuth();
+    const interval = setInterval(checkAuth, 300000);
+    
     return () => clearInterval(interval);
   }, [authToken, logout]);
 

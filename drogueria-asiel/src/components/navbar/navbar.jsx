@@ -10,7 +10,7 @@ import ScrollLink from "../Home/scrollLink/scrollLink";
 const NAV_LINKS = [
     { path: "/", text: "INICIO" },
     { path: "#sobre-nosotros", text: "SOBRE NOSOTROS" },
-    { path: "/productos", text: "PRODUCTOS" },
+    { path: "/en-desarrollo", text: "PRODUCTOS" },
     { 
         text: "CONTÁCTENOS",
         path: "#contacto",
@@ -19,7 +19,7 @@ const NAV_LINKS = [
             { type: "phone", value: "+502 2242-2754" }
         ]
     },
-    { path: "/blog", text: "BLOG" },
+    { path: "/en-desarrollo", text: "NOTICIAS" },
     { 
         path: "/usuario", 
         icon: (

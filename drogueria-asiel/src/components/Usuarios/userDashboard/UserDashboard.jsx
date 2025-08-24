@@ -278,6 +278,27 @@ const UserDashboard = ({
 
   return (
     <div className="user-dashboard">
+
+    {/* BANNER DE FUNCIONALIDADES EN DESARROLLO - INICIO (FÁCIL DE ELIMINAR) */}
+    <div className="features-development-banner">
+      <h3>🚀 Próximamente más funcionalidades</h3>
+      <p>
+        Estamos trabajando para integrar todas las características del sistema. 
+        En las próximas semanas añadiremos:
+      </p>
+      <ul>
+        <li>✅ Historial de compras y pedidos</li>
+        <li>✅ Carrito de compras</li>
+        <li>✅ Sistema de favoritos</li>
+        <li>✅ Gestión de direcciones de envío</li>
+      </ul>
+      <p className="development-timeline">
+        <strong>Línea de tiempo:</strong> Todas estas funciones estarán disponibles 
+        antes del lanzamiento oficial el 1 de octubre.
+      </p>
+    </div>
+    {/* BANNER DE FUNCIONALIDADES EN DESARROLLO - FIN */}
+
       <div className="dashboard-header">
         <h2>Panel de Usuario</h2>
         <button onClick={handleBackToHome} className="home-btn">Regresar al inicio</button>
