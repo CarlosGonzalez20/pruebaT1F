@@ -30,8 +30,7 @@ export default function UnderDevelopment({ featureName = "esta funcionalidad" })
         <p>⏰ <strong>Disponible a partir del 1 de octubre</strong></p>
         <p>Mientras tanto, puedes contactarnos para más información:</p>
         <div className="contact-options">
-          <a href="tel:+(502) 2242-2754" className="contact-link">📞 Llamarnos</a>
-          <a href="mailto:info@asielsa.com" className="contact-link">✉️ Enviar email</a>
+          <a href="mailto:info@asielsa.com,pruebadasa3@gmail.com" className="contact-link">✉️ Enviar email</a>
         </div>
       </div>
       
