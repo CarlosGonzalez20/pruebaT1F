@@ -10,7 +10,7 @@ export default function UnderDevelopment({ featureName = "esta funcionalidad" })
       
       <div className="development-message">
         <p>Estamos trabajando intensamente para traerte <strong>{featureName}</strong>.</p>
-        <p>Pronto estará disponible con todas lo que necesitas.</p>
+        <p>Pronto estará disponible con todo lo que necesitas.</p>
       </div>
       
       <div className="features-coming">

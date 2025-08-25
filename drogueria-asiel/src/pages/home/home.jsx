@@ -63,7 +63,7 @@ const Home = () => {
         </div>
       </header>
       <TherapeuticAreas />
-      <h2>Puedes encntrar nuestros productos en:</h2>
+      <h2>Puedes encontrar nuestros productos en:</h2>
       <InfiniteCarousel images={imageList} />
       <div id="sobre-nosotros"></div>
       <section className="cards-section">
