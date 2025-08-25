@@ -1,224 +1,191 @@
 .error-container {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vh;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.error-content {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 40px 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 119, 182, 0.1);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.error-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
+  border-radius: 12px 12px 0 0;
+}
+
+.error-header {
+  margin-bottom: 25px;
+}
+
+.pharmacy-icon {
+  width: 70px;
+  height: 70px;
+  stroke: #3b82f6;
+  margin-bottom: 15px;
+}
+
+.error-header h1 {
+  font-size: 6rem;
+  margin: 0;
+  color: #3b82f6;
+  line-height: 1;
+}
+
+.error-header h2 {
+  font-size: 2rem;
+  margin: 10px 0 0;
+  color: #1e3a8a;
+}
+
+.error-message {
+  color: #4b5563;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 35px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-animation {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  height: 120px;
+}
+
+.pill-svg {
+  width: 120px;
+  height: 120px;
+  animation: rotate 8s infinite linear;
+}
+
+.home-button {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  color: white;
+  border: none;
+  padding: 12px 35px;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.home-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.home-button:active {
+  transform: translateY(1px);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .error-container {
+    padding: 15px;
   }
   
   .error-content {
-    text-align: center;
-    width: 100%;
-    max-width: 800px;
-    padding: 40px 20px;
-    background-color: white;
-    box-shadow: 0 10px 30px rgba(0, 119, 182, 0.1);
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
+    padding: 30px 20px;
   }
   
-  .error-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
+  .error-header h1 {
+    font-size: 5rem;
   }
   
-  .error-header {
+  .error-header h2 {
+    font-size: 1.7rem;
+  }
+  
+  .error-message {
+    font-size: 1rem;
     margin-bottom: 30px;
   }
   
   .pharmacy-icon {
-    width: 80px;
-    height: 80px;
-    fill: #3b82f6;
-    margin-bottom: 20px;
-  }
-  
-  .error-header h1 {
-    font-size: 8rem;
-    margin: 0;
-    color: #3b82f6;
-    line-height: 1;
-  }
-  
-  .error-header h2 {
-    font-size: 2.5rem;
-    margin: 10px 0 0;
-    color: #1e3a8a;
-  }
-  
-  .error-message {
-    color: #4b5563;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 60px;
+    height: 60px;
   }
   
   .error-animation {
-    margin: 40px 0;
-    display: flex;
-    justify-content: center;
+    height: 100px;
+    margin: 25px 0;
   }
   
-  .molecule {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    animation: rotate 15s infinite linear;
+  .pill {
+    width: 100px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-header h1 {
+    font-size: 4rem;
   }
   
-  .atom {
-    position: absolute;
-    width: 40px;
+  .error-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .error-message {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+  }
+  
+  .pharmacy-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .error-animation {
+    height: 80px;
+    margin: 20px 0;
+  }
+  
+  .pill {
+    width: 80px;
     height: 40px;
-    background-color: #3b82f6;
-    border-radius: 50%;
-    z-index: 1;
-  }
-  
-  .atom:nth-child(1) {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .atom:nth-child(2) {
-    bottom: 15px;
-    left: 15px;
-    background-color: #60a5fa;
-  }
-  
-  .atom:nth-child(3) {
-    bottom: 15px;
-    right: 15px;
-    background-color: #93c5fd;
-  }
-  
-  .bond {
-    position: absolute;
-    background-color: #bfdbfe;
-    width: 5px;
-    z-index: 0;
-  }
-  
-  .bond:nth-child(4) {
-    height: 100px;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%) rotate(30deg);
-  }
-  
-  .bond:nth-child(5) {
-    height: 100px;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-30deg);
   }
   
   .home-button {
-    background: linear-gradient(90deg, #3b82f6, #60a5fa);
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    font-size: 1.2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-    font-weight: 600;
-    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 1rem;
   }
-  
-  .home-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-  }
-  
-  .home-button:active {
-    transform: translateY(1px);
-  }
-  
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .error-header h1 {
-      font-size: 6rem;
-    }
-    
-    .error-header h2 {
-      font-size: 2rem;
-    }
-    
-    .error-message {
-      font-size: 1.1rem;
-    }
-    
-    .pharmacy-icon {
-      width: 60px;
-      height: 60px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .error-content {
-      padding: 30px 15px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    
-    .error-header h1 {
-      font-size: 4rem;
-    }
-    
-    .error-header h2 {
-      font-size: 1.5rem;
-    }
-    
-    .error-message {
-      font-size: 1rem;
-      margin-bottom: 30px;
-    }
-    
-    .molecule {
-      width: 120px;
-      height: 120px;
-    }
-    
-    .atom {
-      width: 30px;
-      height: 30px;
-    }
-    
-    .bond:nth-child(4),
-    .bond:nth-child(5) {
-      height: 80px;
-    }
-    
-    .home-button {
-      padding: 12px 30px;
-      font-size: 1rem;
-    }
-  }
+}
