@@ -114,7 +114,12 @@ const FeedbackBubble = () => {
               <h3>Enviar Feedback</h3>
               <button className="feedback-close-btn" onClick={() => setIsOpen(false)}>×</button>
             </div>
-
+            
+            <div className="feedback-notice">
+              <p>⚠️ <strong>El programa finaliza el 20 de septiembre</strong></p>
+              <p>Después de esta fecha, esta funcionalidad se convertirá en un ChatBot</p>
+            </div>
+            
             <form onSubmit={handleSubmit} className="feedback-form">
               <div className="form-group">
                 <label htmlFor="asunto">Asunto *</label>
@@ -138,7 +143,7 @@ const FeedbackBubble = () => {
                   value={formData.mensaje}
                   onChange={handleInputChange}
                   placeholder="Describe detalladamente el problema o tu recomendación..."
-                  rows="5"
+                  rows="4"
                   required
                   disabled={isLoading}
                 ></textarea>
@@ -164,7 +169,7 @@ const FeedbackBubble = () => {
             </form>
 
             <div className="feedback-info">
-              <p>📧 Tu mensaje se enviará desde tu email registrado: <strong>{currentUser?.email}</strong></p>
+              <p>📧 Tu mensaje se enviará desde: <strong>{currentUser?.email}</strong></p>
               <p>⏰ Te responderemos a la brevedad posible.</p>
             </div>
           </div>
