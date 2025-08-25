@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import GestionUsuarios from './gestionUsuarios/gestionUsuarios';
 import './AdminPanel.css';
 
-const AdminPanel = ({ user, authToken, apiBaseUrl, onBack, setApiResponse }) => {
-  const [isLoading, setIsLoading] = useState(false); // Estado local
-  const [userId, setUserId] = useState('');
-  const [newRole, setNewRole] = useState('usuario');
-  
+const AdminPanel = ({ user, authToken, apiBaseUrl, onBack, setApiResponse, currentSection, onSectionChange }) => {
   // Verificar permisos
-  if (!user || user.rol !== 'admin') {
+  if (!user || (user.rol !== 'admin' && user.rol !== 'moderador')) {
     return (
       <div className="admin-panel">
         <div className="admin-header">
@@ -20,263 +17,111 @@ const AdminPanel = ({ user, authToken, apiBaseUrl, onBack, setApiResponse }) => 
       </div>
     );
   }
-  
-  const adminActions = {
-    getAllUsers: async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(`${apiBaseUrl}/admin/usuarios`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
-        const data = await response.json();
-        setApiResponse(data);
-      } catch (error) {
-        setApiResponse({ error: error.message });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    
-    getStats: async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(`${apiBaseUrl}/admin/estadisticas`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
-        const data = await response.json();
-        setApiResponse(data);
-      } catch (error) {
-        setApiResponse({ error: error.message });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    
-    getAdmins: async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(`${apiBaseUrl}/admin/administradores`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
-        const data = await response.json();
-        setApiResponse(data);
-      } catch (error) {
-        setApiResponse({ error: error.message });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    
-    getUserById: async () => {
-      if (!userId) {
-        setApiResponse({ error: 'Por favor, introduce un ID de usuario' });
-        return;
-      }
+
+  // Definir las secciones disponibles según el rol
+  const availableSections = [
+    { id: 'menu', name: 'Menú Principal', icon: '🏠', availableFor: ['admin', 'moderador'] },
+    { id: 'usuarios', name: 'Usuarios', icon: '👥', availableFor: ['admin'] },
+    { id: 'productos', name: 'Productos', icon: '📦', availableFor: ['admin'] },
+    { id: 'comentarios', name: 'Comentarios', icon: '💬', availableFor: ['admin', 'moderador'] },
+    { id: 'preguntas', name: 'Preguntas', icon: '❓', availableFor: ['admin', 'moderador'] },
+    { id: 'estadisticas', name: 'Estadísticas', icon: '📊', availableFor: ['admin'] },
+  ];
+
+  // Filtrar secciones según el rol del usuario
+  const filteredSections = availableSections.filter(section => 
+    section.availableFor.includes(user.rol)
+  );
+
+  const renderSectionContent = () => {
+    switch (currentSection) {
+      case 'menu':
+        return (
+          <div className="admin-menu">
+            <h2>Panel de Administración</h2>
+            <p>Selecciona una sección para gestionar:</p>
+            <div className="admin-menu-grid">
+              {filteredSections
+                .filter(section => section.id !== 'menu')
+                .map(section => (
+                  <div 
+                    key={section.id} 
+                    className="menu-item"
+                    onClick={() => onSectionChange(section.id)}
+                  >
+                    <span className="menu-icon">{section.icon}</span>
+                    <span className="menu-name">{section.name}</span>
+                  </div>
+                ))}
+            </div>
+          </div>
+        );
       
-      setIsLoading(true);
-      try {
-        const response = await fetch(`${apiBaseUrl}/admin/usuario/${userId}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
-        const data = await response.json();
-        setApiResponse(data);
-      } catch (error) {
-        setApiResponse({ error: error.message });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    
-    getRoleHistory: async () => {
-      if (!userId) {
-        setApiResponse({ error: 'Por favor, introduce un ID de usuario' });
-        return;
-      }
+      case 'usuarios':
+        return (
+          <div className="section-content">
+            <GestionUsuarios 
+              user={user} 
+              authToken={authToken} 
+              apiBaseUrl={apiBaseUrl} 
+              setApiResponse={setApiResponse} 
+            />
+          </div>
+        );
       
-      setIsLoading(true);
-      try {
-        const response = await fetch(`${apiBaseUrl}/admin/usuario/${userId}/historial-rol`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
-        const data = await response.json();
-        setApiResponse(data);
-      } catch (error) {
-        setApiResponse({ error: error.message });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    
-    updateRole: async () => {
-      if (!userId) {
-        setApiResponse({ error: 'Por favor, introduce un ID de usuario' });
-        return;
-      }
+      case 'productos':
+        return (
+          <div className="section-content">
+            <h2>Gestión de Productos</h2>
+            <p>Esta funcionalidad estará disponible próximamente.</p>
+          </div>
+        );
       
-      setIsLoading(true);
-      try {
-        const response = await fetch(`${apiBaseUrl}/admin/usuario/${userId}/rol`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${authToken}`
-          },
-          body: JSON.stringify({ nuevoRol: newRole })
-        });
-        const data = await response.json();
-        setApiResponse(data);
-      } catch (error) {
-        setApiResponse({ error: error.message });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    
-    promoteToAdmin: async () => {
-      if (!userId) {
-        setApiResponse({ error: 'Por favor, introduce un ID de usuario' });
-        return;
-      }
+      case 'comentarios':
+        return (
+          <div className="section-content">
+            <h2>Moderación de Comentarios</h2>
+            <p>Esta funcionalidad estará disponible próximamente.</p>
+          </div>
+        );
       
-      setIsLoading(true);
-      try {
-        const response = await fetch(`${apiBaseUrl}/admin/usuario/${userId}/promover`, {
-          method: 'PATCH',
-          headers: {
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
-        const data = await response.json();
-        setApiResponse(data);
-      } catch (error) {
-        setApiResponse({ error: error.message });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    
-    demoteToUser: async () => {
-      if (!userId) {
-        setApiResponse({ error: 'Por favor, introduce un ID de usuario' });
-        return;
-      }
+      case 'preguntas':
+        return (
+          <div className="section-content">
+            <h2>Gestión de Preguntas</h2>
+            <p>Esta funcionalidad estará disponible próximamente.</p>
+          </div>
+        );
       
-      setIsLoading(true);
-      try {
-        const response = await fetch(`${apiBaseUrl}/admin/usuario/${userId}/degradar`, {
-          method: 'PATCH',
-          headers: {
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
-        const data = await response.json();
-        setApiResponse(data);
-      } catch (error) {
-        setApiResponse({ error: error.message });
-      } finally {
-        setIsLoading(false);
-      }
+      case 'estadisticas':
+        return (
+          <div className="section-content">
+            <h2>Estadísticas</h2>
+            <p>Esta funcionalidad estará disponible próximamente.</p>
+          </div>
+        );
+      
+      default:
+        return (
+          <div className="section-content">
+            <h2>Sección no encontrada</h2>
+          </div>
+        );
     }
   };
-  
+
   return (
     <div className="admin-panel">
       <div className="admin-header">
-        <button onClick={onBack} className="back-btn">← Volver al Dashboard</button>
-        <h2>Panel de Administración</h2>
+        {currentSection !== 'menu' ? (
+          <button onClick={() => onSectionChange('menu')} className="back-btn">← Menú Principal</button>
+        ) : (
+          <button onClick={onBack} className="back-btn">← Volver al Dashboard</button>
+        )}
       </div>
       
       <div className="admin-content">
-        <div className="admin-section">
-          <h3>Gestión General</h3>
-          <div className="admin-actions">
-            <button onClick={adminActions.getAllUsers} className="admin-btn">
-              Obtener Todos los Usuarios
-            </button>
-            
-            <button onClick={adminActions.getStats} className="admin-btn">
-              Obtener Estadísticas
-            </button>
-            
-            <button onClick={adminActions.getAdmins} className="admin-btn">
-              Listar Administradores
-            </button>
-          </div>
-        </div>
-        
-        <div className="admin-section">
-          <h3>Gestión de Usuarios por ID</h3>
-          
-          <div className="user-id-input">
-            <label htmlFor="userId">ID de Usuario:</label>
-            <input
-              type="text"
-              id="userId"
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
-              placeholder="Selecciona un usuario..."
-            />
-          </div>
-          
-          <div className="admin-actions">
-            <button onClick={adminActions.getUserById} className="admin-btn">
-              Buscar Usuario por ID
-            </button>
-            
-            <button onClick={adminActions.getRoleHistory} className="admin-btn">
-              Ver Historial de Roles
-            </button>
-          </div>
-        </div>
-        
-        <div className="admin-section">
-          <h3>Gestión de Roles</h3>
-          
-          <div className="role-management">
-            <div className="form-group">
-              <label htmlFor="newRole">Nuevo Rol:</label>
-              <select
-                id="newRole"
-                value={newRole}
-                onChange={(e) => setNewRole(e.target.value)}
-              >
-                <option value="usuario">Usuario</option>
-                <option value="moderador">Moderador</option>
-                <option value="admin">Administrador</option>
-              </select>
-            </div>
-            
-            <div className="admin-actions">
-              <button onClick={adminActions.updateRole} className="admin-btn">
-                Cambiar Rol
-              </button>
-              
-              <button onClick={adminActions.promoteToAdmin} className="admin-btn promote">
-                Promover a Admin
-              </button>
-              
-              <button onClick={adminActions.demoteToUser} className="admin-btn demote">
-                Degradar a Usuario
-              </button>
-            </div>
-          </div>
-        </div>
-        {isLoading && <div className="loading-indicator">Cargando...</div>}
+        {renderSectionContent()}
       </div>
     </div>
   );

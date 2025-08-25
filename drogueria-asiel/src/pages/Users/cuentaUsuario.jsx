@@ -9,21 +9,20 @@ const LoginForm = lazy(() => import('../../components/Usuarios/loginForm/LoginFo
 const RegistrationForm = lazy(() => import('../../components/Usuarios/registrationForm/RegistrationForm'));
 const UserDashboard = lazy(() => import('../../components/Usuarios/userDashboard/UserDashboard'));
 const AdminPanel = lazy(() => import('../../components/Usuarios/adminPanel/AdminPanel'));
+const GestionUsuarios = lazy(() => import('../../components/Usuarios/adminPanel/gestionUsuarios/gestionUsuarios'));
 
-function CuentaUsuaraio() {
+function CuentaUsuario() {
   const [currentView, setCurrentView] = useState('login');
+  const [adminSection, setAdminSection] = useState('menu'); // Nueva state para secciones admin
 
-  // SOLUCIÓN DEFINITIVA - Configuración a prueba de fallos
+  // Configuración de API
   let API_BASE_URL;
-  
-  // 1. Primero intenta con las variables de entorno de Vite (si usas Vite)
   if (typeof import.meta.env !== 'undefined' && import.meta.env.VITE_API_URL) {
     API_BASE_URL = import.meta.env.VITE_API_URL;
-  }
-  else {
+  } else {
     API_BASE_URL = 'http://localhost:3000';
   }
-  const apiBaseUrl = `${API_BASE_URL}/usuarios`; // Construye la URL final
+  const apiBaseUrl = `${API_BASE_URL}/usuarios`;
   const [apiResponse, setApiResponse] = useState(null);
   const navigate = useNavigate();
   
@@ -47,15 +46,19 @@ function CuentaUsuaraio() {
   };
 
   const handleLoginSuccess = (token, userData) => {
-    login(token, userData); // Usar el método login del hook
+    login(token, userData);
     setCurrentView('dashboard');
   };
 
   const handleLogout = () => {
-    logout(); // Usar el método logout del hook
+    logout();
     setApiResponse(null);
     setCurrentView('login');
     navigate('/');
+  };
+
+  const handleAdminSectionChange = (section) => {
+    setAdminSection(section);
   };
 
   const renderCurrentView = () => {
@@ -73,7 +76,6 @@ function CuentaUsuaraio() {
               onRegisterClick={() => navigateTo('register')}
               apiBaseUrl={apiBaseUrl}
               setApiResponse={setApiResponse}
-              // Quitar setIsLoading de aquí
             />
           </Suspense>
         );
@@ -87,7 +89,6 @@ function CuentaUsuaraio() {
               onRegisterSuccess={handleLoginSuccess}
               apiBaseUrl={apiBaseUrl}
               setApiResponse={setApiResponse}
-              // Quitar setIsLoading de aquí
             />
           </Suspense>
         );
@@ -107,6 +108,19 @@ function CuentaUsuaraio() {
         );
       
       case 'admin':
+        // Verificar permisos para el panel de administración
+        if (!currentUser || (currentUser.rol !== 'admin' && currentUser.rol !== 'moderador')) {
+          return (
+            <div className="access-denied-panel">
+              <h2>Acceso Restringido</h2>
+              <p>No tienes permisos para acceder al panel de administración.</p>
+              <button onClick={() => navigateTo('dashboard')} className="back-btn">
+                ← Volver al Dashboard
+              </button>
+            </div>
+          );
+        }
+        
         return (
           <Suspense fallback={<Loader />}>
             <AdminPanel 
@@ -115,6 +129,8 @@ function CuentaUsuaraio() {
               apiBaseUrl={apiBaseUrl}
               onBack={() => navigateTo('dashboard')}
               setApiResponse={setApiResponse}
+              currentSection={adminSection}
+              onSectionChange={handleAdminSectionChange}
             />
           </Suspense>
         );
@@ -154,7 +170,7 @@ function CuentaUsuaraio() {
       {/* PANEL SOLO PARA ADMINS */}
       {currentUser && currentUser.rol === 'admin' && (
         <aside className="api-response-panel">
-          <h3>🔧 Panel de Debug (Solo Admin)</h3>
+          <h3>🔧 Panel de Debug TEMPORAL (Solo Admin)</h3>
           <div className="response-content">
             {apiResponse ? (
               <pre>{JSON.stringify(apiResponse, null, 2)}</pre>
@@ -168,4 +184,4 @@ function CuentaUsuaraio() {
   );
 }
 
-export default CuentaUsuaraio;
+export default CuentaUsuario;
