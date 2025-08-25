@@ -10,11 +10,8 @@ const FeedbackBubble = () => {
   const [formData, setFormData] = useState({ asunto: '', mensaje: '' });
   const { addNotification } = useNotification();
 
-  // ✅ Este efecto se ejecutará cuando cambie la autenticación
+  // Este efecto se ejecutará cuando cambie la autenticación
   useEffect(() => {
-    console.log('Auth changed, re-rendering FeedbackBubble. Version:', authVersion);
-    console.log('Current user:', currentUser);
-    
     // Cierra el modal si el usuario cierra sesión
     if (!authToken || !currentUser) {
       setIsOpen(false);
