@@ -388,8 +388,7 @@ const UserDashboard = ({
             >
               {isChangingPassword ? 'Cancelar Cambio' : 'Cambiar Contraseña'}
             </button>
-
-            {user.rol === 'admin' && (
+            {(user.rol === 'admin' || user.rol === 'moderador') && (
               <button onClick={onAdminPanelClick} className="action-btn admin">
                 Panel de Administración
               </button>

@@ -1,12 +1,9 @@
 .gestion-usuarios {
-  width: 97%;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-}
-
-.gestion-header h2 {
-  margin: 0;
-  color: #2d3748;
+  padding: 20px;
+  color: black;
 }
 
 .gestion-content {
@@ -30,17 +27,224 @@
   padding-bottom: 10px;
 }
 
-.gestion-actions {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+.gestion-section h4 {
+  margin: 20px 0 15px;
+  color: #374151;
+}
+
+/* Filtros */
+.filtros-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
   gap: 15px;
 }
 
-.gestion-btn {
-  padding: 12px 20px;
-  border: none;
+.filtro-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filtro-select label {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.filtro-select select {
+  padding: 8px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  background: white;
+  color: black;
+}
+
+/* Tabla de usuarios */
+.tabla-usuarios-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
-  font-size: 1rem;
+  margin-top: 15px;
+}
+
+.tabla-usuarios {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-usuarios th {
+  background: #f7fafc;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+}
+
+.tabla-usuarios td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tabla-usuarios tr:hover {
+  background: #f8f9fa;
+}
+
+.tabla-usuarios tr.selected {
+  background: #e6f7ff;
+}
+
+/* Tabla de historial */
+.tabla-historial-container {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.tabla-historial {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tabla-historial th {
+  background: #f0f4f8;
+  padding: 10px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+}
+
+.tabla-historial td {
+  padding: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Badges */
+.badge-rol {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.badge-rol.admin {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-rol.moderador {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-rol.usuario {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.badge-verificado {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.badge-verificado.si {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-verificado.no {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.sin-datos {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Selección de usuario */
+.seleccion-usuario {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.select-usuario {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  color: black;
+  background: white;
+}
+
+.info-usuario-seleccionado {
+  margin: 15px 0;
+  padding: 15px;
+  background: white;
+  border-radius: 6px;
+  border-left: 4px solid #667eea;
+}
+
+.info-usuario-seleccionado p {
+  margin: 5px 0;
+}
+
+.acciones-usuario {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Historial de roles */
+.historial-roles {
+  margin: 20px 0;
+  padding: 20px;
+  background: #f0f9ff;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+}
+
+/* Gestión de roles */
+.gestion-roles {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.gestion-roles h4 {
+    margin-top: 0;
+}
+
+.acciones-rol {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Botones generales */
+.gestion-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
@@ -48,16 +252,22 @@
   color: white;
 }
 
-.gestion-btn:hover {
+.gestion-btn:hover:not(:disabled) {
   background: #5a67d8;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+}
+
+.gestion-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .gestion-btn.promote {
   background: #48bb78;
 }
 
-.gestion-btn.promote:hover {
+.gestion-btn.promote:hover:not(:disabled) {
   background: #38a169;
 }
 
@@ -65,10 +275,23 @@
   background: #f56565;
 }
 
-.gestion-btn.demote:hover {
+.gestion-btn.demote:hover:not(:disabled) {
   background: #e53e3e;
 }
 
+/* Formularios */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Estados de carga y acceso */
 .access-denied {
   text-align: center;
   padding: 40px;
@@ -77,109 +300,90 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.access-denied h2 {
+  color: #dc2626;
+  margin-bottom: 15px;
+}
+
 .access-denied p {
-  font-size: 1.2rem;
-  color: #718096;
-}
-
-.back-btn {
-  background: #e2e8f0;
-  color: #4a5568;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s;
-}
-
-.back-btn:hover {
-  background: #cbd5e0;
-}
-
-.user-id-input {
-  margin-bottom: 20px;
-}
-
-.user-id-input label {
-  display: block;
-  margin-bottom: 8px;
-  color: #4a5568;
-  font-weight: 500;
-}
-
-.user-id-input input {
-  width: 100%;
-  padding: 12px 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.2s;
-  box-sizing: border-box;
-}
-
-.user-id-input input:focus {
-  outline: none;
-  border-color: #667eea;
-}
-
-.role-management {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.role-management .form-group {
-  max-width: 300px;
-}
-
-.role-management label {
-  display: block;
-  margin-bottom: 8px;
-  color: #4a5568;
-  font-weight: 500;
-}
-
-.role-management select {
-  width: 100%;
-  padding: 12px 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 1rem;
-  background: white;
-  color: black;
-  cursor: pointer;
-}
-
-.role-management select:focus {
-  outline: none;
-  border-color: #667eea;
+  font-size: 1.1rem;
+  color: #6b7280;
 }
 
 .loading-indicator {
   text-align: center;
   padding: 20px;
-  color: #718096;
+  color: #667eea;
   font-style: italic;
+  font-weight: 500;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .gestion-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+  .gestion-usuarios {
+    padding: 15px;
   }
   
   .gestion-section {
     padding: 20px;
   }
   
-  .gestion-actions {
-    grid-template-columns: 1fr;
+  .filtros-container {
+    flex-direction: column;
+    align-items: stretch;
   }
   
-  .role-management {
-    gap: 15px;
+  .filtro-botones {
+    justify-content: center;
+  }
+  
+  .filtro-select {
+    justify-content: center;
+  }
+  
+  .tabla-usuarios-container {
+    max-height: 300px;
+  }
+  
+  .tabla-usuarios {
+    font-size: 0.9rem;
+  }
+  
+  .tabla-usuarios th,
+  .tabla-usuarios td {
+    padding: 8px;
+  }
+  
+  .acciones-usuario,
+  .acciones-rol {
+    flex-direction: column;
+  }
+  
+  .gestion-btn {
+    width: 100%;
+  }
+  
+  .tabla-historial {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gestion-section {
+    padding: 15px;
+  }
+  
+  .tabla-usuarios {
+    font-size: 0.8rem;
+  }
+  
+  .badge-rol,
+  .badge-verificado {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+  
+  .tabla-historial {
+    font-size: 0.7rem;
   }
 }
