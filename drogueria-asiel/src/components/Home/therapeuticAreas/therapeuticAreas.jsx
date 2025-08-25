@@ -178,7 +178,7 @@ const TherapeuticAreas = memo(() => {
           <div className="areas-gallery">
             {activeArea && (
               <p className="click-hint">
-                Da clic en un producto para ver sus especificaciones
+                Presiona cualquier producto para ver sus especificaciones
               </p>
             )}
 
